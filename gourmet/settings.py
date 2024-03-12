@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-50@hscl7^o=qlvu!c-kd7^aozo1-sn87$&4-$i(5s=%whq2u!f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-martsyniuko-recipeswebs-wxeu44o6emz.ws-eu108.gitpod.io','.herokuapp.com']
+ALLOWED_HOSTS = ['8000-martsyniuko-recipeswebs-wxeu44o6emz.ws-eu108.gitpod.io','.herokuapp.com', '.gitpod.io']
 
 
 # Application definition
@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'gourmet',
+    'recipes',
 ]
 
 MIDDLEWARE = [
@@ -88,6 +88,13 @@ WSGI_APPLICATION = 'gourmet.wsgi.application'
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
+
+SECRET_KEY = os.environ.get("SECRET_KEY")
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.gitpod.io",
+    "https://*.herokuapp.com"
+]
 
 
 # Password validation
