@@ -10,11 +10,13 @@ class Recipe(models.Model):
     author = models.ForeignKey(
     User, on_delete=models.CASCADE, related_name="recipe_posts")
     excerpt = models.TextField(blank=True)
-    ingredients = models.TextField()
-    instructions = models.TextField()
-    created_on = models.DateTimeField(auto_now_add=True)
+    ingredients = models.TextField(verbose_name='Ingredients')
+    instructions = models.TextField(verbose_name='Instructions')    
+    cooking_time = models.PositiveIntegerField(help_text='Time in minutes', default=0, verbose_name='Cooking Time')
+    created_on = models.DateTimeField(auto_now_add=True, verbose_name='Created On')
     status = models.IntegerField(choices=STATUS, default=0)
-    updated_on = models.DateTimeField(auto_now=True)
+    updated_on = models.DateTimeField(auto_now=True, verbose_name='Updated On')
+    servings  = models.PositiveIntegerField(help_text='Number of servings', default=0, verbose_name='Servings')
 
     class Meta:
         ordering = ["-created_on"]
