@@ -31,3 +31,17 @@ def recipe_detail(request, slug):
         "recipes/recipe_detail.html",
         {"recipe": recipe},
     )
+
+def index(request):
+    """View function for home page of site."""
+
+    # Generate counts of some of the main objects - will be replaced with featured recipes
+    all_recipes = Recipe.objects.filter(status=1)
+
+
+    context = {
+        'all_recipes': all_recipes,
+    }
+
+    # Render the HTML template index.html with the data in the context variable
+    return render(request, 'recipes/index.html', context=context)
