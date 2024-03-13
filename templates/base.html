@@ -1,3 +1,5 @@
+{% load static %}
+
 {% url 'recipes_list' as recipes_url %}
 
 <!DOCTYPE html>
@@ -22,7 +24,7 @@
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href=" {% static 'css/style.css' %}">
 
 </head>
 

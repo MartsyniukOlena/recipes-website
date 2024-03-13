@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block content %}
 
 <!-- recipe_list.html content starts here -->
@@ -22,18 +22,15 @@
                                 
                                 <img class="card-img-top" src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&resize=556,505"
                                     alt="placeholder image">
-                             
-                                <img class="card-img-top" src="" alt="">
                            
                             </div>
-                            <a href="" class="post-link">
-                                <h2 class="card-title">{{ recipe.title }}</h2>
+                            <a href="" class="recipe-link">
+                                <h2 class="card-title recipe-title">{{ recipe.title }}</h2>
                             </a>
                             <p class="card-text">{{ recipe.excerpt }}</p>
-
-                            <p class="card-text text-muted h6">{{ recipe.created_on}}
-                            </p>
-                            <p class="author">Author: {{ recipe.author }}</p>
+                            <p class="card-text"><span>Cooking Time: {{ recipe.cooking_time }}</span> | <span>Servings:{{ recipe.servings }}</span></p>
+                            <p class="author">By {{ recipe.author }}</p>
+                            <p class="card-text text-muted h6">{{ recipe.created_on}} </p>
                         </div>
                     </div>
                 </div>
