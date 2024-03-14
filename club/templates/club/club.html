@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block club %}
+{% load static %}
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-4 text-center">
+      <img src="{% static 'images/cooking.avif' %}" width="75%" />
+    </div>
+    <div class="col-8">
+      <!-- Title goes between these h2 tags -->
+      <h2>{{ club.title }}</h2>
+      <!-- Content goes directly underneath this -->
+      {{ club.content | safe }}
+      {{ club.venue | safe }}
+      {{ club.agenda | safe }}
+      {{ club.datetime | safe }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col text-right">
+      <!-- Updated on field goes in here -->
+      <p class="text-end"><em>Updated on: {{ club.updated_on }}</em></p>
+    </div>
+  </div>
+</div>
+{% endblock club %}
