@@ -170,4 +170,6 @@ def recipe_delete(request, slug):
     if request.method == 'POST':
         recipe.delete()
         return redirect('recipes_list')
-    return render(request, 'recipes/recipe_delete.html', {'recipe': recipe})   
+    return render(request, 'recipes/recipe_delete.html', {'recipe': recipe})
+
+    
