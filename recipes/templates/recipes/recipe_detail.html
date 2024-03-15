@@ -34,10 +34,15 @@
                 <p class="card-text">
                     {{ recipe.instructions | safe }}
                 </p>
+                {% if user.is_authenticated and recipe.author == user %}
+                <a class="btn btn-edit" href="{% url 'recipe_edit' slug=recipe.slug %}">Edit</a>
+                <a class="btn btn-delete" href="{% url 'recipe_delete' slug=recipe.slug %}">Delete</a>
+                {% endif %}
             </div>
         </div>
     </div>
-   <!-- Displaying count of comments -->
+            
+<!-- Displaying count of comments -->
    <div class="row">
     <div class="col-12">
         <strong class="text-secondary">
@@ -69,7 +74,7 @@
                 <p class="approval">This comment is awaiting approval</p>
                 {% endif %}
                 {% if user.is_authenticated and comment.author == user %}
-                <button class="btn btn-delete" data-comment_id="{{ comment.id }}">Delete</button>
+                <button class="btn btn-delete delete-comment-btn" data-comment_id="{{ comment.id }}">Delete</button>
                 <button class="btn btn-edit" data-comment_id="{{ comment.id }}">Edit</button>
                 {% endif %}
             </div>
@@ -117,4 +122,6 @@
 
 {% block extras %}
 <script src="{% static 'js/comments.js' %}"></script>
+
+<script src="{% static 'js/recipes.js' %}"></script>
 {% endblock %}

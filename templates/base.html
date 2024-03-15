@@ -81,13 +81,19 @@
                                 <a class="nav-link {% if request.path == login_url %}active{% endif %}"
                                     aria-current="page" href="{% url 'account_login' %}">Login</a>
                             </li>
-                            {% endif %}
-
                         </ul>
                       </div>
+                      
                 </div>
             </div>
+            {% endif %}
+            {% if user.is_authenticated %}
+            <p class="text-end m-3">You are logged in as {{ user }}</p>
+            {% else %}
+            <p class="text-end m-3">You are not logged in</p>
+            {% endif %}
         </nav>
+
     </header>
 
     <!-- displaying Django messages -->

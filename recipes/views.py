@@ -102,11 +102,11 @@ def comment_edit(request, slug, comment_id):
     **Context**
 
     ``post``
-        An instance of :model:`blog.Post`.
+        An instance of :model:`recipes.Recipe`.
     ``comment``
-        A single comment related to the post.
+        A single comment related to the recipe.
     ``comment_form``
-        An instance of :form:`blog.CommentForm`
+        An instance of :form:`recipe.CommentForm`
     """
     if request.method == "POST":
 
@@ -134,10 +134,10 @@ def comment_delete(request, slug, comment_id):
 
     **Context**
 
-    ``post``
-        An instance of :model:`blog.Post`.
+    ``recipe``
+        An instance of :model:`recipes.Recipe`.
     ``comment``
-        A single comment related to the post.
+        A single comment related to the recipe.
     """
     queryset = Recipe.objects.filter(status=1)
     recipe = get_object_or_404(queryset, slug=slug)
@@ -151,3 +151,23 @@ def comment_delete(request, slug, comment_id):
                              'You can only delete your own comments!')
 
     return HttpResponseRedirect(reverse('recipe_detail', args=[slug]))
+
+
+def recipe_edit(request, slug):
+    recipe = get_object_or_404(Recipe, slug=slug)
+    if request.method == 'POST':
+        form = RecipeForm(request.POST, instance=recipe)
+        if form.is_valid():
+            form.save()
+            return redirect('recipe_detail', slug=recipe.slug)
+    else:
+        form = RecipeForm(instance=recipe)
+    return render(request, 'recipes/recipe_edit.html', {'form': form})
+
+
+def recipe_delete(request, slug):
+    recipe = get_object_or_404(Recipe, slug=slug)
+    if request.method == 'POST':
+        recipe.delete()
+        return redirect('recipes_list')
+    return render(request, 'recipes/recipe_delete.html', {'recipe': recipe})   
