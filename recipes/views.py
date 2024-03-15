@@ -1,8 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from django.contrib import messages
+from django.utils.text import slugify
 from .models import Recipe
-from .forms import CommentForm
+from .forms import CommentForm, RecipeForm
 
 # Create your views here.
 class RecipeList(generic.ListView):
@@ -69,3 +70,25 @@ def index(request):
 
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'recipes/index.html', context=context)
+
+
+def add_recipe(request):
+    if request.method == 'POST':
+        form = RecipeForm(request.POST)
+        if form.is_valid():
+            recipe = form.save(commit=False)
+            recipe.author = request.user  # Set the author to the current logged-in user
+            
+            # Generate a unique slug based on the recipe title
+            recipe.slug = slugify(recipe.title)
+            
+            # Handle duplicate slugs by appending a number to make it unique
+            existing_slugs = Recipe.objects.filter(slug__startswith=recipe.slug)
+            if existing_slugs.exists():
+                recipe.slug = f"{recipe.slug}-{existing_slugs.count() + 1}"
+
+            recipe.save()
+            return redirect('recipes_list')  # Redirect to recipe list page after successful form submission
+    else:
+        form = RecipeForm()
+    return render(request, 'recipes/add_recipe.html', {'form': form})
