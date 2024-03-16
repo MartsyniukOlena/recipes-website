@@ -89,7 +89,15 @@ def add_recipe(request):
                 recipe.slug = f"{recipe.slug}-{existing_slugs.count() + 1}"
 
             recipe.save()
-            return redirect('recipes_list')  # Redirect to recipe list page after successful form submission
+
+            # Add success message
+            messages.success(request, 'Recipe added successfully!')
+
+            # Redirect to the detail view of the newly created recipe
+            return redirect('recipe_detail', slug=recipe.slug)
+        else:
+            # Add error message if form is invalid
+            messages.error(request, 'Error adding recipe. Please check the form inputs.')
     else:
         form = RecipeForm()
     return render(request, 'recipes/add_recipe.html', {'form': form})
@@ -157,19 +165,31 @@ def recipe_edit(request, slug):
     recipe = get_object_or_404(Recipe, slug=slug)
     if request.method == 'POST':
         form = RecipeForm(request.POST, instance=recipe)
-        if form.is_valid():
-            form.save()
-            return redirect('recipe_detail', slug=recipe.slug)
+        if form.is_valid() and recipe.author == request.user:
+            new_recipe = form.save(commit=False)
+            new_recipe.slug = slugify(new_recipe.title)
+            new_recipe.save()
+            messages.add_message(request, messages.SUCCESS, 'Recipe edited!')
+            return redirect('recipe_detail', slug=new_recipe.slug)
+        else:
+            messages.add_message(request, messages.ERROR, 'Error editing recipe!')
     else:
         form = RecipeForm(instance=recipe)
     return render(request, 'recipes/recipe_edit.html', {'form': form})
 
 
 def recipe_delete(request, slug):
-    recipe = get_object_or_404(Recipe, slug=slug)
-    if request.method == 'POST':
+    queryset = Recipe.objects.filter(status=1)
+    recipe = get_object_or_404(queryset, slug=slug)
+    
+    if recipe.author == request.user:
         recipe.delete()
-        return redirect('recipes_list')
-    return render(request, 'recipes/recipe_delete.html', {'recipe': recipe})
+        messages.add_message(request, messages.SUCCESS, 'Recipe deleted!')
+    else:
+        messages.add_message(request, messages.ERROR,
+                             'Error deleting recipe!')
+
+    return HttpResponseRedirect(reverse('recipes_list'))
+    
 
     
