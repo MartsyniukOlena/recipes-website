@@ -49,3 +49,18 @@
   </button>
 </div>
 {% endblock %}
+
+{% block featured %}
+
+<h2>Featured Recipes</h2>
+{% if featured_recipes %}
+    <ul>
+        {% for recipe in featured_recipes %}
+            <li><a href="{% url 'recipe_detail' recipe.slug %}">{{ recipe.title }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No featured recipes.</p>
+{% endif %}
+
+{% endblock %}

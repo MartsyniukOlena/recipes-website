@@ -30,7 +30,6 @@ def recipe_detail(request, slug):
     queryset = Recipe.objects.all()
     recipe = get_object_or_404(queryset, slug=slug)
 
-    # If the recipe is a draft and the current user is not the author, handle accordingly
     if recipe.status == 0 and recipe.author != request.user:
         return render(request, 'recipes/my_recipe_list.html', {'recipe': recipe})
 
@@ -67,11 +66,11 @@ def index(request):
     """View function for home page of site."""
 
     # Generate counts of some of the main objects - will be replaced with featured recipes
-    all_recipes = Recipe.objects.filter(status=1)
+    featured_recipes = Recipe.objects.filter(is_featured=True)
 
 
     context = {
-        'all_recipes': all_recipes,
+        'featured_recipes': featured_recipes,
     }
 
     # Render the HTML template index.html with the data in the context variable

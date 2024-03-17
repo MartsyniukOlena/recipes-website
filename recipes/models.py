@@ -17,6 +17,7 @@ class Recipe(models.Model):
     status = models.IntegerField(choices=STATUS, default=0)
     updated_on = models.DateTimeField(auto_now=True, verbose_name='Updated On')
     servings  = models.PositiveIntegerField(help_text='Number of servings', default=0, verbose_name='Servings')
+    is_featured = models.BooleanField(default=False)
 
     class Meta:
         ordering = ["-created_on"]

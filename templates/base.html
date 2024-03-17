@@ -93,11 +93,18 @@
             <p class="text-end m-3">You are not logged in</p>
             {% endif %}
 
-            {% if user.is_authenticated %}
-            <a href="{% url 'my_recipe_list' %}" class="btn btn-primary">My Recipes</a>
-            {% endif %}
         </nav>
-
+        {% if user.is_authenticated %}
+        <div class="px-3 py-2 border-bottom mb-3">
+            <div class="container d-flex flex-wrap justify-content-center">
+                <a href="{% url 'my_recipe_list' %}" class="btn btn-primary">My Recipes</a>
+      
+              <div class="text-end">
+                <a href="{% url 'add_recipe' %}" class="btn btn-primary">Add Recipe</a>
+              </div>
+            </div>
+          </div>
+        {% endif %}
     </header>
 
 
@@ -135,6 +142,10 @@
 
         {% block my_recipe_list %}
         <!-- My recipe List Goes here -->
+        {% endblock %}
+
+        {% block featured %}
+        <!-- Featured Lists Go here -->
         {% endblock %}
 
     </main>
