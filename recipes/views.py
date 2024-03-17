@@ -3,10 +3,13 @@ from django.views import generic
 from django.contrib import messages
 from django.utils.text import slugify
 from django.http import HttpResponseRedirect
+from django.db.models import Q 
 from .models import Recipe, Comment
-from .forms import CommentForm, RecipeForm
+from .forms import CommentForm, RecipeForm, SearchForm
 
 # Create your views here.
+
+
 class RecipeList(generic.ListView):
     queryset = Recipe.objects.filter(status=1)
     template_name = "recipes/recipe_list.html"
@@ -205,3 +208,9 @@ def my_recipe_list(request):
         'draft_recipes': draft_recipes,
     }
     return render(request, 'recipes/my_recipe_list.html', context)
+
+
+def search_results(request):
+    query = request.GET.get('q')
+    recipes = Recipe.objects.filter(Q(title__icontains=query) | Q(ingredients__icontains=query))
+    return render(request, 'recipes/search_results.html', {'recipes': recipes})
