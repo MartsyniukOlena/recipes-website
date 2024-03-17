@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block my_recipe_list %}
+<h2>Published Recipes</h2>
+<ul>
+    {% for recipe in published_recipes %}
+        <li><a href="{% url 'recipe_detail' recipe.slug %}">{{ recipe.title }}</a></li>
+    {% empty %}
+        <li>No published recipes available.</li>
+    {% endfor %}
+</ul>
+
+<h2>Draft Recipes</h2>
+<ul>
+    {% for recipe in draft_recipes %}
+        <li><a href="{% url 'recipe_detail' recipe.slug %}">{{ recipe.title }}</a></li>
+    {% empty %}
+        <li>No draft recipes available.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

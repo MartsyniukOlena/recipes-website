@@ -27,8 +27,13 @@ def recipe_detail(request, slug):
     :template:`recipes/recipe_detail.html`
     """
 
-    queryset = Recipe.objects.filter(status=1)
+    queryset = Recipe.objects.all()
     recipe = get_object_or_404(queryset, slug=slug)
+
+    # If the recipe is a draft and the current user is not the author, handle accordingly
+    if recipe.status == 0 and recipe.author != request.user:
+        return render(request, 'recipes/my_recipe_list.html', {'recipe': recipe})
+
     comments = recipe.comments.all().order_by("-created_on")
     comment_count = recipe.comments.filter(approved=True).count()
 
@@ -179,7 +184,7 @@ def recipe_edit(request, slug):
 
 
 def recipe_delete(request, slug):
-    queryset = Recipe.objects.filter(status=1)
+    queryset = Recipe.objects.all()
     recipe = get_object_or_404(queryset, slug=slug)
     
     if recipe.author == request.user:
@@ -191,5 +196,13 @@ def recipe_delete(request, slug):
 
     return HttpResponseRedirect(reverse('recipes_list'))
     
-
     
+def my_recipe_list(request):
+    user = request.user
+    published_recipes = Recipe.objects.filter(author=user, status=1)
+    draft_recipes = Recipe.objects.filter(author=user, status=0)
+    context = {
+        'published_recipes': published_recipes,
+        'draft_recipes': draft_recipes,
+    }
+    return render(request, 'recipes/my_recipe_list.html', context)
