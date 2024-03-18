@@ -73,15 +73,10 @@ def recipe_detail(request, slug):
 def index(request):
     """View function for home page of site."""
 
-    # Generate counts of some of the main objects - will be replaced with featured recipes
     featured_recipes = Recipe.objects.filter(is_featured=True)
-
-
     context = {
         'featured_recipes': featured_recipes,
     }
-
-    # Render the HTML template index.html with the data in the context variable
     return render(request, 'recipes/index.html', context=context)
 
 
@@ -90,25 +85,20 @@ def add_recipe(request):
         form = RecipeForm(request.POST)
         if form.is_valid():
             recipe = form.save(commit=False)
-            recipe.author = request.user  # Set the author to the current logged-in user
+            recipe.author = request.user  
             
-            # Generate a unique slug based on the recipe title
             recipe.slug = slugify(recipe.title)
             
-            # Handle duplicate slugs by appending a number to make it unique
             existing_slugs = Recipe.objects.filter(slug__startswith=recipe.slug)
             if existing_slugs.exists():
                 recipe.slug = f"{recipe.slug}-{existing_slugs.count() + 1}"
 
             recipe.save()
-
-            # Add success message
             messages.success(request, 'Recipe added successfully!')
 
-            # Redirect to the detail view of the newly created recipe
             return redirect('recipe_detail', slug=recipe.slug)
         else:
-            # Add error message if form is invalid
+
             messages.error(request, 'Error adding recipe. Please check the form inputs.')
     else:
         form = RecipeForm()
