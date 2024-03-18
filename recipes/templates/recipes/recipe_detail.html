@@ -42,7 +42,7 @@
         </div>
     </div>
 
-    {% if request.user.is_authenticated %}
+    {% if request.user.is_authenticated and recipe.status != 0 %}
     {% if is_favorite %}
         <button class="btn btn-primary" id="remove-from-favorites-btn" data-slug="{{ recipe.slug }}"><i class="fa-regular fa-heart"></i> Remove from favorites</button>
     {% else %}
