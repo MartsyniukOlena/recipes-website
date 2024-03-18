@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.utils.text import slugify
 from django.http import HttpResponseRedirect, JsonResponse
 from django.db.models import Q 
+from django.db import IntegrityError
 from .models import Recipe, Comment
 from .forms import CommentForm, RecipeForm, SearchForm
 
@@ -93,13 +94,20 @@ def add_recipe(request):
             if existing_slugs.exists():
                 recipe.slug = f"{recipe.slug}-{existing_slugs.count() + 1}"
 
-            recipe.save()
-            messages.success(request, 'Recipe added successfully!')
+            try:
+                recipe.save()
+            
+                if recipe.status == 0:
+                    messages.info(request, 'Draft recipe added successfully!')
+                else:
+                    messages.success(request, 'Recipe published successfully!')
 
-            return redirect('recipe_detail', slug=recipe.slug)
+                return redirect('recipe_detail', slug=recipe.slug)
+            except IntegrityError:
+                messages.error(request, 'Error adding recipe: Duplicate slug.')
         else:
 
-            messages.error(request, 'Error adding recipe. Please check the form inputs.')
+            messages.error(request, 'Error adding recipe.')
     else:
         form = RecipeForm()
     return render(request, 'recipes/add_recipe.html', {'form': form})
