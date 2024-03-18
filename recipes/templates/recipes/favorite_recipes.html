@@ -1,0 +1,12 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block favourities %}
+<h1>Favorite Recipes</h1>
+    <ul>
+        {% for recipe in favorite_recipes %}
+            <li><a href="{% url 'recipe_detail' slug=recipe.slug %}">{{ recipe.title }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -41,6 +41,14 @@
             </div>
         </div>
     </div>
+
+    {% if request.user.is_authenticated %}
+    {% if is_favorite %}
+        <button class="btn btn-primary" id="remove-from-favorites-btn" data-slug="{{ recipe.slug }}"><i class="fa-regular fa-heart"></i> Remove from favorites</button>
+    {% else %}
+        <button class="btn btn-primary" id="add-to-favorites-btn" data-slug="{{ recipe.slug }}"><i class="fa-regular fa-heart"></i> Add to favorites</button>
+    {% endif %}
+    {% endif %}
             
 <!-- Displaying count of comments -->
    <div class="row">

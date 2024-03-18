@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.views import generic
 from django.contrib import messages
 from django.utils.text import slugify
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.db.models import Q 
 from .models import Recipe, Comment
 from .forms import CommentForm, RecipeForm, SearchForm
@@ -36,6 +36,10 @@ def recipe_detail(request, slug):
     if recipe.status == 0 and recipe.author != request.user:
         return render(request, 'recipes/my_recipe_list.html', {'recipe': recipe})
 
+    is_favorite = False
+    if request.user.is_authenticated:
+        is_favorite = request.user.favourite.filter(slug=recipe.slug).exists()
+
     comments = recipe.comments.all().order_by("-created_on")
     comment_count = recipe.comments.filter(approved=True).count()
 
@@ -61,6 +65,7 @@ def recipe_detail(request, slug):
         "comments": comments,
         "comment_count": comment_count,
         "comment_form": comment_form,
+        'is_favorite': is_favorite,
         },
         
     )
@@ -214,3 +219,32 @@ def search_results(request):
     query = request.GET.get('q')
     recipes = Recipe.objects.filter(Q(title__icontains=query) | Q(ingredients__icontains=query))
     return render(request, 'recipes/search_results.html', {'recipes': recipes})
+
+
+def favorite_recipes(request):
+    favorite_recipes = request.user.favourite.all()
+    return render(request, 'recipes/favorite_recipes.html', {'favorite_recipes': favorite_recipes})
+    
+
+def add_to_favorites(request, slug):
+    recipe = get_object_or_404(Recipe, slug=slug)
+    
+    if request.user.favourite.filter(slug=slug).exists():
+        message = "Recipe already in favorites"
+    else:
+        request.user.favourite.add(recipe)
+        message = "Recipe added to favorites"
+
+    return JsonResponse({'message': message})
+
+
+def remove_from_favorites(request, slug):
+    recipe = get_object_or_404(Recipe, slug=slug)
+    
+    if request.user.favourite.filter(slug=slug).exists():
+        request.user.favourite.remove(recipe)
+        message = "Recipe removed from favorites"
+    else:
+        message = "Recipe is not in favorites"
+
+    return JsonResponse({'message': message})

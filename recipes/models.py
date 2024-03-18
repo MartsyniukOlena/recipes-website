@@ -18,8 +18,7 @@ class Recipe(models.Model):
     updated_on = models.DateTimeField(auto_now=True, verbose_name='Updated On')
     servings  = models.PositiveIntegerField(help_text='Number of servings', default=0, verbose_name='Servings')
     is_featured = models.BooleanField(default=False)
-    favourites = models.ManyToManyField(
-        User, related_name='favourite', default=None, blank=True)
+    favourites = models.ManyToManyField(User, related_name='favourite', blank=True, default=None)
 
     class Meta:
         ordering = ["-created_on"]

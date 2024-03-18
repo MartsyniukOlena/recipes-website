@@ -96,14 +96,19 @@
         </nav>
         {% if user.is_authenticated %}
         <div class="px-3 py-2 border-bottom mb-3">
-            <div class="container d-flex flex-wrap justify-content-center">
-                <a href="{% url 'my_recipe_list' %}" class="btn btn-primary">My Recipes</a>
-      
-              <div class="text-end">
-                <a href="{% url 'add_recipe' %}" class="btn btn-primary">Add Recipe</a>
-              </div>
+            <div class="container d-flex justify-content-front">
+                <div class="text-end">
+                    <a href="{% url 'my_recipe_list' %}" class="btn btn-primary">My Recipes</a>
+                </div>
+
+                <div class="text-end">
+                    <a href="{% url 'add_recipe' %}" class="btn btn-primary">Add Recipe</a>
+                </div>
+                <div class="text-end">
+                    <a href="{% url 'favorite_recipes' %}" class="btn btn-primary"><i class="fa-solid fa-heart"></i> Favourities</a>
+                </div>
             </div>
-          </div>
+        </div>
         {% endif %}
     </header>
 
@@ -149,6 +154,11 @@
         {% endblock %}
 
         {% block search %}
+        <!-- Search Goes here -->
+        {% endblock %}
+
+        {% block favourities %}
+        <!-- List of favourities Goes here -->
         {% endblock %}
 
     </main>
