@@ -6,8 +6,13 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch(`/add-to-favorites/${slug}/`)
             .then(response => response.json())
             .then(data => {
-                alert(data.message); // You can handle success message in a better way
-                location.reload(); // Reload the page
+                // Display message in custom modal
+                document.getElementById('alertMessage').innerText = data.message;
+                document.getElementById('customAlertModal').style.display = 'block';
+                // Optionally, you can reload the page after a delay
+                setTimeout(() => {
+                    location.reload();
+                }, 3000); // Reload after 3 seconds
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -18,13 +23,31 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch(`/remove-from-favorites/${slug}/`)
             .then(response => response.json())
             .then(data => {
-                alert(data.message); // You can handle success message in a better way
-                location.reload(); // Reload the page
+                // Display message in custom modal
+                document.getElementById('alertMessage').innerText = data.message;
+                document.getElementById('customAlertModal').style.display = 'block';
+                // Optionally, you can reload the page after a delay
+                setTimeout(() => {
+                    location.reload();
+                }, 3000); // Reload after 3 seconds
             })
             .catch(error => {
                 console.error('Error:', error);
             });
     }
+    
+    // Close the modal when the user clicks anywhere outside of it
+    window.onclick = function(event) {
+        var modal = document.getElementById('customAlertModal');
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+    
+    // Close the modal when the user clicks on the close button
+    document.querySelector('.close').addEventListener('click', function() {
+        document.getElementById('customAlertModal').style.display = 'none';
+    });
 
     if (addToFavoritesBtn) {
         addToFavoritesBtn.addEventListener('click', function() {
@@ -56,5 +79,5 @@ for (let button of deleteRecipeButtons) {
 
 confirmDeleteRecipeButton.addEventListener("click", (e) => {
     let slug = e.target.getAttribute("data-recipe-slug");
-    window.location.href = `/delete_recipe/${slug}`;
+    window.location.href = `/${slug}/delete_recipe/`;
 });
