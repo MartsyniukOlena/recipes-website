@@ -81,7 +81,7 @@ confirmDeleteRecipeButton.addEventListener("click", (e) => {
 });
 
 setTimeout(function() {
-        var alertContainer = document.getElementById('alert-container');
+        let alertContainer = document.getElementById('alert-container');
         if (alertContainer) {
             alertContainer.remove();
         }
