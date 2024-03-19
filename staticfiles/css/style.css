@@ -2,12 +2,64 @@ body {
     font-family: "Poppins", sans-serif;
 }
 
-.navbar-brand {
-    font-family: "Poppins", sans-serif;
-    font-size: 1.4rem;
+.nav-link:hover,
+.dropdown-item:hover {
+    color: #E69C24 !important;
+}
+
+.navbar-brand img,
+.logo img {
+    max-width: 50%;
+    height: 50%;
+
+}
+
+.author {
+    color: black;
+    text-transform: uppercase;
+}
+
+.heading-featured h1 {
+    margin-top: 2rem;
     font-weight: 700;
+}
+
+.heading-featured a {
+    text-decoration: none;
+    color: #000000;
+    font-weight: 700;
+}
+
+.heading-featured a:hover {
+    color: #E69C24;
+}
+
+.card-body h2,
+.my-recipes h2 {
+    font-weight: 900;
+}
+
+.card-body h2:hover,
+.my-recipes h2:hover {
+    color: #E69C24;
+}
+
+.carousel-inner {
+    height: 30%;
+}
+
+.page-link {
     color: #000000;
 }
+
+.page-link:hover {
+    color: #E69C24;
+}
+
+
+
+
+
 
 .main-bg {
     background-color: #FFFFFF;
@@ -26,24 +78,24 @@ body {
     height: auto;
 }
 
-.author {
-    color: black;
-    text-transform: uppercase;
-}
+
+
 
 .masthead {
     margin-top: 10px;
     overflow: hidden;
     position: relative;
     display: inline-block;
-    height: 33vh;
+    height: 45vh;
     width: 100%;
 }
+
 
 .masthead-text {
     background-color: #445261;
     color: white;
     position: relative;
+    margin-left: 10px;
 }
 
 .masthead-image {
@@ -53,16 +105,6 @@ body {
 
 .masthead-image:after {
     content: "";
-    position: absolute;
-    top: 0;
-    right: 90%;
-    height: 100%;
-    width: 150%;
-    background: #445261;
-    -webkit-transform: skew(15deg);
-    -moz-transform: skew(15deg);
-    transform: skew(15deg);
-    z-index: 100;
 }
 
 .recipe-title {
@@ -73,32 +115,14 @@ body {
     text-decoration: none;
 }
 
-.recipe-title:hover,
-.page-link {
-    color: #ff0000;
-}
-
-.recipe-excerpt {
-    margin-left: 5%;
-    color: lightgray;
-}
-
 .btn-signup,
 .btn-edit {
     background-color: #188181;
     color: #f0f0f0;
 }
 
-.btn-signup:hover,
-.btn-signup:active {
-    background-color: #fff;
-    color: #7fd2cc;
-}
 
-.link {
-    color: #0e5a7d;
-    text-decoration: none;
-}
+
 
 .link:hover,
 .link:active {
