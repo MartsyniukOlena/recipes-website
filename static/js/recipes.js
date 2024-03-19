@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
 
     window.onclick = function(event) {
-        var modal = document.getElementById('customAlertModal');
+        let modal = document.getElementById('customAlertModal');
         if (event.target == modal) {
             modal.style.display = 'none';
         }
