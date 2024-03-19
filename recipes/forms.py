@@ -9,7 +9,7 @@ class CommentForm(forms.ModelForm):
 class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
-        fields = ['title', 'excerpt', 'ingredients', 'instructions', 'cooking_time', 'servings', 'status']
+        fields = ['title', 'excerpt', 'ingredients', 'instructions', 'cooking_time', 'servings', 'status', 'featured_image']
 
 class SearchForm(forms.Form):
     query = forms.CharField(label='Search')
