@@ -1,16 +1,20 @@
 {% extends 'base.html' %}
-{% block club %}
+
 {% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block club %}
 <div class="container mt-5">
   <div class="row">
     <div class="col-12 col-md-4 text-center">
-      {% if "placeholder" in about.profile_image.url %}
-      <img src="{% static 'images/nobody.jpg' %}" class="profile-image" alt="{{ about.title }}">
+      {% if "placeholder" in club.profile_image.url %}
+      <img src="{% static 'images/nobody.jpg' %}" class="profile-image" alt="{{ club.title }}">
       {% else %}
-      <img src="{{ about.profile_image.url }}" class="profile-image" alt="{{ about.title }}">
+      <img src="{{ club.profile_image.url }}" class="profile-image" alt="{{ club.title }}">
       {% endif %}
     </div>
-    <div class="col-8">
+    <div class="col-12 col-md-8">
       <!-- Title goes between these h2 tags -->
       <h2>{{ club.title }}</h2>
       <!-- Content goes directly underneath this -->
@@ -23,5 +27,18 @@
       <p class="text-end"><em>Updated on: {{ club.updated_on }}</em></p>
     </div>
   </div>
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 my-5">
+        <h2>Join Us!</h2>
+        <p>Join us for our upcoming event in the picturesque region of Emilia-Romagna, Italy. 
+          If you're interested in attending, please fill out the form below, and we'll ensure you receive all the necessary details to participate.</p>
+
+        <form method="post">
+            {{ event_form | crispy }}
+            {% csrf_token %}
+            <button class="btn btn-secondary" type="submit">Submit</button>
+        </form>
+    </div>
+</div>
 </div>
 {% endblock club %}

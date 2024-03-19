@@ -3,10 +3,20 @@
 {% load crispy_forms_tags %}
 
 {% block add %}
-<h1>Add Recipe</h1>
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
-</form>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6 my-5">
+            <h1>Add Recipe</h1>
+            <p>Share your culinary expertise with us! 
+                Whether it's a family favorite, a cherished tradition, or a newly discovered delight, we invite you to add your recipe to our collection. 
+                Simply complete the form below to showcase your culinary creations and inspire fellow food enthusiasts.</p>
+            
+            <form method="POST">
+                {{ form | crispy }}
+                {% csrf_token %}
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
