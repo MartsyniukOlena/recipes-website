@@ -38,7 +38,7 @@
 </head>
 <!-- Navigation -->
 <body class="d-flex flex-column h-100 main-bg">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
             <div class="container">
                 <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'images/logo-sm-l.png' %}"
                         alt="Gourmet Logo"></a>
@@ -71,7 +71,7 @@
                                 <li><a class="dropdown-item" href="{% url 'my_recipe_list' %}">My Recipes</a></li>
                                 <li><a class="dropdown-item" href="{% url 'favorite_recipes' %}"><i
                                             class="fa-solid fa-heart"></i>
-                                        Favourities</a></li>
+                                        Favorities</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -90,16 +90,16 @@
                             {% if user.is_authenticated %}
                             <li class="nav-item">
                                 <a class="nav-link text-light {% if request.path == logout_url %}active{% endif %}"
-                                    aria-current="page" href="{% url 'account_logout' %}">Logout</a>
+                                    aria-current="page" href="{% url 'account_logout' %}">Sign out</a>
                             </li>
                             {% else %}
                             <li class="nav-item">
                                 <a class="nav-link text-light {% if request.path == signup_url %}active{% endif %}"
-                                    aria-current="page" href="{% url 'account_signup' %}">Register</a>
+                                    aria-current="page" href="{% url 'account_signup' %}">Sign up</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-light {% if request.path == login_url %}active{% endif %}"
-                                    aria-current="page" href="{% url 'account_login' %}">Login</a>
+                                    aria-current="page" href="{% url 'account_login' %}">Sign In</a>
                             </li>
                             {% endif %}
                             {% if user.is_authenticated %}

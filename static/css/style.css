@@ -4,9 +4,8 @@ body {
 
 .nav-link:hover,
 .dropdown-item:hover {
-    color: #5AB7D4 !important;
+    color: #E69C24 !important;
 }
-
 
 .navbar-brand img,
 .logo img {
@@ -19,6 +18,44 @@ body {
     color: black;
     text-transform: uppercase;
 }
+
+.heading-featured h1 {
+    margin-top: 2rem;
+    font-weight: 700;
+}
+
+.heading-featured a {
+    text-decoration: none;
+    color: #000000;
+    font-weight: 700;
+}
+
+.heading-featured a:hover {
+    color: #E69C24;
+}
+
+.card-body h2,
+.my-recipes h2 {
+    font-weight: 900;
+}
+
+.card-body h2:hover,
+.my-recipes h2:hover {
+    color: #E69C24;
+}
+
+.carousel-inner {
+    height: 30%;
+}
+
+.page-link {
+    color: #000000;
+}
+
+.page-link:hover {
+    color: #E69C24;
+}
+
 
 
 
@@ -41,19 +78,24 @@ body {
     height: auto;
 }
 
+
+
+
 .masthead {
     margin-top: 10px;
     overflow: hidden;
     position: relative;
     display: inline-block;
-    height: 33vh;
+    height: 45vh;
     width: 100%;
 }
+
 
 .masthead-text {
     background-color: #445261;
     color: white;
     position: relative;
+    margin-left: 10px;
 }
 
 .masthead-image {
@@ -63,16 +105,6 @@ body {
 
 .masthead-image:after {
     content: "";
-    position: absolute;
-    top: 0;
-    right: 90%;
-    height: 100%;
-    width: 150%;
-    background: #445261;
-    -webkit-transform: skew(15deg);
-    -moz-transform: skew(15deg);
-    transform: skew(15deg);
-    z-index: 100;
 }
 
 .recipe-title {
@@ -81,15 +113,6 @@ body {
 
 .recipe-link {
     text-decoration: none;
-}
-
-.page-link {
-    color: #FF006F;
-}
-
-.recipe-excerpt {
-    margin-left: 5%;
-    color: lightgray;
 }
 
 .btn-signup,

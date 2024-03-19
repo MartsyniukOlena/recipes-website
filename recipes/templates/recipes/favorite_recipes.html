@@ -3,10 +3,51 @@
 {% load crispy_forms_tags %}
 
 {% block favourities %}
-<h1>Favorite Recipes</h1>
-    <ul>
-        {% for recipe in favorite_recipes %}
-            <li><a href="{% url 'recipe_detail' slug=recipe.slug %}">{{ recipe.title }}</a></li>
-        {% endfor %}
-    </ul>
+<div class="text-center heading-featured">
+    <h1>Favorite Recipes</h1>
+</div>
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- Recipe Entries Column -->
+        <div class="col-12 mt-3 left">
+            <div class="row">
+                {% for recipe in favorite_recipes %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="image-container">
+
+                                {% if "placeholder" in recipe.featured_image.url %}
+                                <img class="card-img-top" src="{% static 'images/recipe-default.avif' %}"
+                                    alt="placeholder image">
+                                {% else %}
+                                <img class="card-img-top" src=" {{ recipe.featured_image.url }}"
+                                    alt="{{ recipe.title }}">
+                                {% endif %}
+
+
+                            </div>
+                            <a href="{% url 'recipe_detail' recipe.slug %}" class="recipe-link">
+                                <h2 class="card-title recipe-title">{{ recipe.title }}</h2>
+                            </a>
+                            <p class="card-text">{{ recipe.excerpt }}</p>
+                            <p class="card-text"><span><i class="fa-regular fa-clock"></i> {{ recipe.cooking_time }}
+                                    minutes</span> |
+                                <span><i class="fa-solid fa-users"></i> {{ recipe.servings }}</span></p>
+                            <p class="author">By {{ recipe.author }}</p>
+                            <p class="card-text text-muted h6">{{ recipe.created_on}} </p>
+                        </div>
+                    </div>
+                </div>
+                {% if forloop.counter|divisibleby:3 %}
+            </div>
+            <div class="row">
+                {% endif %}
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

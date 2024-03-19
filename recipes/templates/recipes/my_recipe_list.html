@@ -1,21 +1,49 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
+{% load static %}
+{% load crispy_forms_tags %}
 
 {% block my_recipe_list %}
-<h2>Published Recipes</h2>
-<ul>
-    {% for recipe in published_recipes %}
-        <li><a href="{% url 'recipe_detail' recipe.slug %}">{{ recipe.title }}</a></li>
-    {% empty %}
-        <li>No published recipes available.</li>
-    {% endfor %}
-</ul>
 
-<h2>Draft Recipes</h2>
-<ul>
-    {% for recipe in draft_recipes %}
-        <li><a href="{% url 'recipe_detail' recipe.slug %}">{{ recipe.title }}</a></li>
-    {% empty %}
-        <li>No draft recipes available.</li>
-    {% endfor %}
-</ul>
+<div class="container">
+    <div class="row mb-2">
+        <div class="col-md-6">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static my-recipes">
+                    <strong class="d-inline-block mb-2 text-primary-emphasis">Published Recipes</strong>
+                        {% for recipe in published_recipes %}
+                        <a href="{% url 'recipe_detail' recipe.slug %}" class="recipe-link">
+                            <h2 class="card-title recipe-title">{{ recipe.title }}</h2>
+                        </a>
+                        <div class="mb-1 text-body-secondary">{{ recipe.created_on}}</div>
+                        <p class="card-text mb-auto">{{ recipe.excerpt }}</p>
+                        <hr>
+                        <br>
+                    {% empty %}
+                    <p></p>No published recipes available.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static my-recipes">
+                    <strong class="d-inline-block mb-2 text-success-emphasis">Draft Recipes</strong>
+                    {% for recipe in draft_recipes %}
+                    <a href="{% url 'recipe_detail' recipe.slug %}" class="recipe-link">
+                        <h2 class="card-title recipe-title">{{ recipe.title }}</h2>
+                    </a>
+                    <div class="mb-1 text-body-secondary">{{ recipe.created_on}}</div>
+                    <p class="card-text mb-auto">{{ recipe.excerpt }}</p>
+                    <hr>
+                    <br>
+                    {% empty %}
+                    <li>No draft recipes available.</li>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
+
+
