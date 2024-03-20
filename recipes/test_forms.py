@@ -1,5 +1,6 @@
 from django.test import TestCase
-from .forms import CommentForm, RecipeForm
+from django.shortcuts import reverse
+from .forms import CommentForm, RecipeForm, SearchForm
 
 
 class TestCommentForm(TestCase):
@@ -147,3 +148,23 @@ class RecipeFormTestCase(TestCase):
             'status': 1,
     })
         self.assertTrue(recipe_form.is_valid(), msg="Form is valid")
+
+
+
+class SearchFormTestCase(TestCase):
+
+    def test_search_form_valid_data(self):
+        search_form = SearchForm({'query': 'Test Query'})
+        self.assertTrue(search_form.is_valid())
+
+
+    def test_search_form_blank_data(self):
+        search_form = SearchForm({'query': ''})
+        self.assertFalse(search_form.is_valid())
+
+
+    def test_search_form_max_length(self):
+        query = 'a' * 101
+        response = self.client.get(reverse('search_results'), {'q': query})
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Search query is too long. Maximum length is 100 characters.")

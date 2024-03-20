@@ -212,8 +212,19 @@ def my_recipe_list(request):
 
 def search_results(request):
     query = request.GET.get('q')
+
+    if not query:
+        messages.error(request, "Please enter a search query.")
+        return render(request, 'recipes/search_results.html', {'recipes': []})
+
+    if len(query) > 100:
+        messages.error(request, "Search query is too long. Maximum length is 100 characters.")
+        return render(request, 'recipes/search_results.html', {'recipes': []})
+
     recipes = Recipe.objects.filter(Q(title__icontains=query) | Q(ingredients__icontains=query))
+    
     return render(request, 'recipes/search_results.html', {'recipes': recipes})
+
 
 
 def favorite_recipes(request):
