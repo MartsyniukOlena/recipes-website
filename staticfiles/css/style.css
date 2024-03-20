@@ -56,55 +56,16 @@ body {
     color: #E69C24;
 }
 
+.search:hover {
+    background-color: #E69C24;
+}
 
-
-
-
-
-.main-bg {
-    background-color: #FFFFFF;
+.card-body button {
+    margin: 5px;
 }
 
 .card {
     border: none;
-}
-
-.image-container {
-    position: relative;
-}
-
-.scale {
-    width: 100%;
-    height: auto;
-}
-
-
-
-
-.masthead {
-    margin-top: 10px;
-    overflow: hidden;
-    position: relative;
-    display: inline-block;
-    height: 45vh;
-    width: 100%;
-}
-
-
-.masthead-text {
-    background-color: #445261;
-    color: white;
-    position: relative;
-    margin-left: 10px;
-}
-
-.masthead-image {
-    position: relative;
-    overflow: hidden;
-}
-
-.masthead-image:after {
-    content: "";
 }
 
 .recipe-title {
@@ -115,20 +76,17 @@ body {
     text-decoration: none;
 }
 
+.main-bg {
+    background-color: #FFFFFF;
+}
+
+
 .btn-signup,
 .btn-edit {
     background-color: #188181;
     color: #f0f0f0;
 }
 
-
-
-
-.link:hover,
-.link:active {
-    color: #354f52;
-    text-decoration: underline;
-}
 
 .btn-like {
     color: #E84610;
@@ -141,17 +99,19 @@ body {
     background: #E84610;
 }
 
-.btn-like:hover,
-.btn-like:active {
-    color: #E84610;
-    background: transparent;
-    border: none;
-}
-
 .faded {
     color: rgb(172, 175, 175);
 }
 
 .approval {
     color: rgb(222, 146, 168);
+}
+
+#alert-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999; 
+
 }

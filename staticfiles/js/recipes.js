@@ -8,7 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(data => {
 
                 document.getElementById('alertMessage').innerText = data.message;
-                document.getElementById('customAlertModal').style.display = 'block';
+                document.getElementById('customAlertModal').style.display = 'inline';
+                document.getElementById('customAlertModal').style.width = '35%';
+                document.getElementById('customAlertModal').style.left = '30%';
 
                 setTimeout(() => {
                     location.reload();
@@ -24,7 +26,10 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(data => {
                 document.getElementById('alertMessage').innerText = data.message;
-                document.getElementById('customAlertModal').style.display = 'block';
+                document.getElementById('customAlertModal').style.display = 'inline';
+                document.getElementById('customAlertModal').style.width = '35%';
+                document.getElementById('customAlertModal').style.left = '30%';
+
                 setTimeout(() => {
                     location.reload();
                 }, 3000);
