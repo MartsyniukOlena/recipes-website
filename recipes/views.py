@@ -87,29 +87,26 @@ def add_recipe(request):
         if form.is_valid():
             recipe = form.save(commit=False)
             recipe.author = request.user  
-            
             recipe.slug = slugify(recipe.title)
             
+            # Check if the slug already exists
             existing_slugs = Recipe.objects.filter(slug__startswith=recipe.slug)
             if existing_slugs.exists():
                 recipe.slug = f"{recipe.slug}-{existing_slugs.count() + 1}"
-
-            try:
-                recipe.save()
             
-                if recipe.status == 0:
-                    messages.info(request, 'Draft recipe added successfully!')
-                else:
-                    messages.success(request, 'Recipe published successfully!')
+            recipe.save()
+            
+            if recipe.status == 0:
+                messages.add_message(request, messages.SUCCESS, 'Draft recipe added successfully!')
+            else:
+                messages.add_message(request, messages.ERROR, 'Recipe published successfully!')
 
-                return redirect('recipe_detail', slug=recipe.slug)
-            except IntegrityError:
-                messages.error(request, 'Error adding recipe: Duplicate slug.')
+            return redirect('recipe_detail', slug=recipe.slug)
         else:
-
             messages.error(request, 'Error adding recipe.')
     else:
         form = RecipeForm()
+    
     return render(request, 'recipes/add_recipe.html', {'form': form})
 
 
@@ -179,7 +176,7 @@ def recipe_edit(request, slug):
             new_recipe = form.save(commit=False)
             new_recipe.slug = slugify(new_recipe.title)
             new_recipe.save()
-            messages.add_message(request, messages.SUCCESS, 'Recipe edited!')
+            messages.add_message(request, messages.SUCCESS, 'Recipe updated!')
             return redirect('recipe_detail', slug=new_recipe.slug)
         else:
             messages.add_message(request, messages.ERROR, 'Error editing recipe!')

@@ -64,26 +64,9 @@ body {
     margin: 5px;
 }
 
-
-
-
-.main-bg {
-    background-color: #FFFFFF;
-}
-
 .card {
     border: none;
 }
-
-.image-container {
-    position: relative;
-}
-
-.scale {
-    width: 100%;
-    height: auto;
-}
-
 
 .recipe-title {
     color: #000000;
@@ -93,20 +76,17 @@ body {
     text-decoration: none;
 }
 
+.main-bg {
+    background-color: #FFFFFF;
+}
+
+
 .btn-signup,
 .btn-edit {
     background-color: #188181;
     color: #f0f0f0;
 }
 
-
-
-
-.link:hover,
-.link:active {
-    color: #354f52;
-    text-decoration: underline;
-}
 
 .btn-like {
     color: #E84610;
@@ -119,17 +99,19 @@ body {
     background: #E84610;
 }
 
-.btn-like:hover,
-.btn-like:active {
-    color: #E84610;
-    background: transparent;
-    border: none;
-}
-
 .faded {
     color: rgb(172, 175, 175);
 }
 
 .approval {
     color: rgb(222, 146, 168);
+}
+
+#alert-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999; 
+
 }
