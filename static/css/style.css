@@ -56,7 +56,13 @@ body {
     color: #E69C24;
 }
 
+.search:hover {
+    background-color: #E69C24;
+}
 
+.card-body button {
+    margin: 5px;
+}
 
 
 
@@ -78,34 +84,6 @@ body {
     height: auto;
 }
 
-
-
-
-.masthead {
-    margin-top: 10px;
-    overflow: hidden;
-    position: relative;
-    display: inline-block;
-    height: 45vh;
-    width: 100%;
-}
-
-
-.masthead-text {
-    background-color: #445261;
-    color: white;
-    position: relative;
-    margin-left: 10px;
-}
-
-.masthead-image {
-    position: relative;
-    overflow: hidden;
-}
-
-.masthead-image:after {
-    content: "";
-}
 
 .recipe-title {
     color: #000000;
