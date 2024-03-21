@@ -43,7 +43,32 @@ class TestRecipeViews(TestCase):
 
 
     def test_successful_recipe_submission(self):
+        """Test for posting a recipe"""
         self.client.login(username="myUsername", password="myPassword")
         response = self.client.post(reverse('add_recipe'), {'title': 'New Recipe', 'content': 'Step 1: Do this, Step 2: Do that', 'cooking_time': 30,
             'servings': 4, 'status': 1})
         self.assertEqual(response.status_code, 302)
+
+
+    def test_favorite_recipes_view(self):
+        """Test for rendering a page to display recipes added to Favorities"""
+        self.client.login(username="myUsername", password="myPassword")
+        response = self.client.get(reverse('favorite_recipes'))
+        self.assertEqual(response.status_code, 200) 
+
+
+    def test_add_to_favorites_view(self):
+        """Test for adding recipes to Favorities"""
+        self.client.login(username="myUsername", password="myPassword")
+        response = self.client.post(reverse('add_to_favorites', kwargs={'slug': self.recipe.slug}))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()['message'], 'Recipe added to Favorites')
+
+
+    def test_remove_from_favorites_view(self):
+        """Test for removing recipes from Favorities"""
+        self.client.login(username="myUsername", password="myPassword")
+        self.user.favorite.add(self.recipe)
+        response = self.client.post(reverse('remove_from_favorites', kwargs={'slug': self.recipe.slug}))
+        self.assertEqual(response.status_code, 200) 
+        self.assertEqual(response.json()['message'], 'Recipe removed from Favorites')

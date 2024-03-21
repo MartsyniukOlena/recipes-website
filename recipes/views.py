@@ -236,10 +236,10 @@ def add_to_favorites(request, slug):
     recipe = get_object_or_404(Recipe, slug=slug)
     
     if request.user.favorite.filter(slug=slug).exists():
-        message = "Recipe already in favorites"
+        message = "Recipe already in Favorites"
     else:
         request.user.favorite.add(recipe)
-        message = "Recipe added to favorites"
+        message = "Recipe added to Favorites"
 
     return JsonResponse({'message': message})
 
@@ -249,8 +249,8 @@ def remove_from_favorites(request, slug):
     
     if request.user.favorite.filter(slug=slug).exists():
         request.user.favorite.remove(recipe)
-        message = "Recipe removed from favorites"
+        message = "Recipe removed from Favorites"
     else:
-        message = "Recipe is not in favorites"
+        message = "Recipe is not in Favorites"
 
     return JsonResponse({'message': message})
