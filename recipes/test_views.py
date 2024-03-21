@@ -49,11 +49,13 @@ class TestRecipeViews(TestCase):
         self.assertEqual(response.status_code, 302)
 
 
-    def test_favorite_recipes_view(self):
+    def test_favorite_recipes_page_rendered(self):
         """Test for rendering a page to display recipes added to Favorities"""
         self.client.login(username="myUsername", password="myPassword")
         response = self.client.get(reverse('favorite_recipes'))
-        self.assertEqual(response.status_code, 200) 
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Favorite Recipes')
+        self.assertTrue('favorite_recipes' in response.context)
 
 
     def test_add_to_favorites_view(self):
@@ -62,6 +64,7 @@ class TestRecipeViews(TestCase):
         response = self.client.post(reverse('add_to_favorites', kwargs={'slug': self.recipe.slug}))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()['message'], 'Recipe added to Favorites')
+        
 
 
     def test_remove_from_favorites_view(self):
@@ -71,3 +74,33 @@ class TestRecipeViews(TestCase):
         response = self.client.post(reverse('remove_from_favorites', kwargs={'slug': self.recipe.slug}))
         self.assertEqual(response.status_code, 200) 
         self.assertEqual(response.json()['message'], 'Recipe removed from Favorites')
+
+
+class MyRecipesPageTest(TestCase):
+
+    def setUp(self):
+        self.user = User.objects.create_superuser(
+            username="myUsername",
+            password="myPassword",
+            email="test@test.com"
+        )
+
+        self.published_recipe = Recipe(title="Recipe title", author=self.user,
+                         slug="publish-title", excerpt="Recipe excerpt",
+                         content="Recipe content", cooking_time=1, servings=2, status=1)
+        self.published_recipe.save()
+
+        self.draft_recipe = Recipe(title="Recipe title", author=self.user,
+                         slug="draft-title", excerpt="Recipe excerpt",
+                         content="Recipe content", cooking_time=1, servings=2, status=0)
+        self.draft_recipe.save()
+
+
+    def test_recipe_page_rendered(self):
+        self.client.login(username="myUsername", password="myPassword")
+        response = self.client.get(reverse('my_recipe_list'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Published Recipe')
+        self.assertContains(response, 'Draft Recipe')
+        self.assertTrue('published_recipes' in response.context)
+        self.assertTrue('draft_recipes' in response.context)

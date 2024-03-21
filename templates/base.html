@@ -16,7 +16,7 @@
 
 <head>
     <title>Gourmet</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Google Fonts CSS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -95,17 +95,17 @@
                             {% else %}
                             <li class="nav-item">
                                 <a class="nav-link text-light {% if request.path == signup_url %}active{% endif %}"
-                                    aria-current="page" href="{% url 'account_signup' %}">Sign up</a>
+                                    aria-current="page" href="{% url 'account_signup' %}">Register</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-light {% if request.path == login_url %}active{% endif %}"
-                                    aria-current="page" href="{% url 'account_login' %}">Sign In</a>
+                                    aria-current="page" href="{% url 'account_login' %}">Log in</a>
                             </li>
                             {% endif %}
                             {% if user.is_authenticated %}
-                            <span class="navbar-text">You are logged in as {{ user }}</span>
+                            <li class="navbar-text">You are logged in as {{ user }}</li>
                             {% else %}
-                            <span class="navbar-text">You are not logged in</span>
+                            <li class="navbar-text">You are not logged in</li>
                             {% endif %}
                         </ul>
                     </div>    
