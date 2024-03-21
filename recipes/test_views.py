@@ -4,6 +4,7 @@ from django.test import TestCase
 from .forms import CommentForm
 from .models import Recipe
 
+
 class TestRecipeViews(TestCase):
 
     def setUp(self):
@@ -12,11 +13,9 @@ class TestRecipeViews(TestCase):
             password="myPassword",
             email="test@test.com"
         )
-        self.recipe = Recipe(title="Recipe title", author=self.user,
-                         slug="recipe-title", excerpt="Recipe excerpt",
-                         content="Recipe content", cooking_time=1, servings=2, status=1)
+        self.recipe = Recipe(title="Recipe title", author=self.user, slug="recipe-title",
+        excerpt="Recipe excerpt", content="Recipe content", cooking_time=1, servings=2, status=1)
         self.recipe.save()
-
 
     def test_render_recipe_detail_page_with_comment_form(self):
         """Verifies a single recipe page containing a comment form is returned"""
@@ -26,7 +25,6 @@ class TestRecipeViews(TestCase):
         self.assertIn(b"Recipe content", response.content)
         self.assertIsInstance(
             response.context['comment_form'], CommentForm)
-
 
     def test_successful_comment_submission(self):
         """Test for posting a comment on a post"""
@@ -40,14 +38,11 @@ class TestRecipeViews(TestCase):
         self.assertIn(b'Comment submitted and awaiting approval',
                       response.content)
 
-
     def test_successful_recipe_submission(self):
         """Test for posting a recipe"""
         self.client.login(username="myUsername", password="myPassword")
-        response = self.client.post(reverse('add_recipe'), {'title': 'New Recipe', 'content': 'Step 1: Do this, Step 2: Do that', 'cooking_time': 30,
-            'servings': 4, 'status': 1})
+        response = self.client.post(reverse('add_recipe'), {'title': 'New Recipe', 'content': 'Step 1: Do this, Step 2: Do that', 'cooking_time': 30, 'servings': 4, 'status': 1})
         self.assertEqual(response.status_code, 302)
-
 
     def test_favorite_recipes_page_rendered(self):
         """Test for rendering a page to display recipes added to Favorities"""
@@ -57,26 +52,24 @@ class TestRecipeViews(TestCase):
         self.assertContains(response, 'Favorite Recipes')
         self.assertTrue('favorite_recipes' in response.context)
 
-
     def test_add_to_favorites_view(self):
         """Test for adding recipes to Favorities"""
         self.client.login(username="myUsername", password="myPassword")
         response = self.client.post(reverse('add_to_favorites', kwargs={'slug': self.recipe.slug}))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()['message'], 'Recipe added to Favorites')
-        
-
 
     def test_remove_from_favorites_view(self):
         """Test for removing recipes from Favorities"""
         self.client.login(username="myUsername", password="myPassword")
         self.user.favorite.add(self.recipe)
         response = self.client.post(reverse('remove_from_favorites', kwargs={'slug': self.recipe.slug}))
-        self.assertEqual(response.status_code, 200) 
+        self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()['message'], 'Recipe removed from Favorites')
 
 
 class MyRecipesPageTest(TestCase):
+    """Test case for the My Recipes page."""
 
     def setUp(self):
         self.user = User.objects.create_superuser(
@@ -95,8 +88,15 @@ class MyRecipesPageTest(TestCase):
                          content="Recipe content", cooking_time=1, servings=2, status=0)
         self.draft_recipe.save()
 
-
     def test_recipe_page_rendered(self):
+        """
+        Test whether the My Recipes page is rendered correctly.
+
+        Retrieves the My Recipes page, and checks whether both
+        published and draft recipes are displayed on the page.
+        Also checks whether the
+        context contains the expected variables.
+        """
         self.client.login(username="myUsername", password="myPassword")
         response = self.client.get(reverse('my_recipe_list'))
         self.assertEqual(response.status_code, 200)
@@ -104,3 +104,4 @@ class MyRecipesPageTest(TestCase):
         self.assertContains(response, 'Draft Recipe')
         self.assertTrue('published_recipes' in response.context)
         self.assertTrue('draft_recipes' in response.context)
+        

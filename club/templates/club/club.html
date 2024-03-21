@@ -5,9 +5,9 @@
 
 
 {% block club %}
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-12 col-md-4 text-center">
+<div class="container">
+  <div class="row align-items-center">
+    <div class="col club-image">
       {% if "placeholder" in club.profile_image.url %}
       <img src="{% static 'images/placeholder.jpg' %}" class="profile-image" alt="{{ club.title }}">
       {% else %}
@@ -21,7 +21,7 @@
       {{ club.content | safe }}
     </div>
   </div>
-  <div class="row">
+  <div class="row align-items-center">
     <div class="col text-right">
       <!-- Updated on field goes in here -->
       <p class="text-end"><em>Updated on: {{ club.updated_on }}</em></p>

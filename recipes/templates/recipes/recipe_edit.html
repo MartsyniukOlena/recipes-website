@@ -1,10 +1,22 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
 
-{% block content %}
-  <h1>Edit Recipe: {{ recipe.title }}</h1>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save Changes</button>
-  </form>
+{% block add %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6 my-5">
+            <h1>Edit Recipe</h1>
+            <p>Please use the form below to edit the details of the recipe.
+              Make sure to provide accurate information and any necessary updates to ensure the recipe is correctly documented.
+              Once you've made the desired changes, submit the form</p>
+            
+            <form method="POST">
+                {{ form | crispy }}
+                {% csrf_token %}
+                <button type="submit" class="submit-btn">Save Changes</button>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -4,21 +4,22 @@ from .models import Club
 from .forms import EventForm
 
 # Create your views here.
+
+
 def club_gourmet(request):
     """
-    Renders the most recent information on the website author
-    and allows user collaboration requests.
+    Renders the most recent information on the club
+    and allows user attendance requests.
 
-    Displays an individual instance of :model:`about.About`.
+    Displays an individual instance of :model:`club.Club`.
 
     **Context**
-    ``about``
-        The most recent instance of :model:`about.About`.
-        ``collaborate_form``
-            An instance of :form:`about.CollaborateForm`.
-    
+    ``club``
+        The most recent instance of :model:`club.Club`.
+        ``event_form``
+            An instance of :form:`club.EventForm`.
     **Template**
-    :template:`about/about.html`
+    :template:`club/club.html`
     """
 
     if request.method == "POST":
@@ -35,6 +36,5 @@ def club_gourmet(request):
     return render(
         request,
         "club/club.html",
-        {"club": club,
-        "event_form": event_form},
+        {"club": club, "event_form": event_form},
     )

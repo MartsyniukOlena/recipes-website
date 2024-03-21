@@ -9,7 +9,7 @@
             <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                 <div class="col p-4 d-flex flex-column position-static">
                     <h1 class="recipe-title">{{ recipe.title }}</h1>
-                    <p class="recipe-excerpt">{{ recipe.excerpt }}</p>
+                    <p class="recipe-excerpt">{{ recipe.excerpt | linebreaks }}</p>
                     <p class="card-text"><span><i class="fa-regular fa-clock"></i> {{ recipe.cooking_time }}
                             minutes</span>
                         |
@@ -39,7 +39,7 @@
                 <!-- The recipe content goes inside the card-text. -->
                 <!-- Use the | safe filter inside the template tags -->
                 <p class="card-text">
-                    {{ recipe.content | safe }}
+                    {{ recipe.content | linebreaks | safe }}
                 </p>
 
                 {% if user.is_authenticated and recipe.author == user %}

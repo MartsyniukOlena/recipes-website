@@ -3,6 +3,7 @@ from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
+
 class Club(models.Model):
     """
     Stores a single text about the club
@@ -18,7 +19,7 @@ class Club(models.Model):
 
 class EventForm(models.Model):
     """
-    Stores a single collaboration request message
+    Stores a single attendance request message
     """
     name = models.CharField(max_length=200)
     email = models.EmailField()

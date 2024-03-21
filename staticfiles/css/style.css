@@ -9,14 +9,8 @@ body {
 
 .navbar-brand img,
 .logo img {
-    max-width: 50%;
-    height: 50%;
-
-}
-
-.author {
-    color: black;
-    text-transform: uppercase;
+    max-width: 45%;
+    height: 45%;
 }
 
 .heading-featured h1 {
@@ -76,15 +70,26 @@ body {
     text-decoration: none;
 }
 
+.author {
+    color: black;
+    text-transform: uppercase;
+}
+
 .main-bg {
     background-color: #FFFFFF;
 }
 
-
 .btn-signup,
+.submit-btn,
 .btn-edit {
-    background-color: #188181;
+    background-color: #234E5A;
     color: #f0f0f0;
+}
+
+.btn-signup:hover,
+.submit-btn:hover,
+.btn-edit:hover {
+    background-color: #00AB8C;
 }
 
 
@@ -94,9 +99,17 @@ body {
     background: transparent;
 }
 
-.btn-delete {
+.delete-recipe-btn:hover {
     color: #fff;
     background: #E84610;
+}
+
+.delete-recipe-btn:hover {
+    background: #650000;
+}
+
+.btn-add-delete i {
+    color: #E84610;
 }
 
 .faded {
@@ -114,4 +127,13 @@ body {
     right: 0;
     z-index: 9999; 
 
+}
+
+.social-link {
+    color: #fff;
+    text-decoration: none;
+}
+
+.club-image {
+    margin-top: 10px;
 }

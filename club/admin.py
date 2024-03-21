@@ -1,12 +1,15 @@
 from django.contrib import admin
-from .models import Club, EventForm
 from django_summernote.admin import SummernoteModelAdmin
+from .models import Club, EventForm
+
 
 # Register your models here.
 
 @admin.register(Club)
 class ClubAdmin(SummernoteModelAdmin):
-
+    """
+    Adds rich-text editing of content in admin
+    """
     summernote_fields = ('content',)
 
 

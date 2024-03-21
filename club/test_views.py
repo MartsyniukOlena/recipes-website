@@ -4,8 +4,9 @@ from .models import Club
 from .forms import EventForm
 
 # Create your tests here.
-class TestClubView(TestCase):
 
+
+class TestClubView(TestCase):
 
     def setUp(self):
         """Creates club content"""
@@ -31,4 +32,4 @@ class TestClubView(TestCase):
         response = self.client.post(reverse('club'), post_data)
         self.assertEqual(response.status_code, 200)
         self.assertIn(
-            b'Your message was received! I endeavour to respond within 2 working days.', response.content)
+            b'Your message was received! I endeavourto respond within 2 working days.',response.content)

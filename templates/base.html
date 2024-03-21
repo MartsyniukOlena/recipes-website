@@ -18,6 +18,9 @@
     <title>Gourmet</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
+
     <!-- Google Fonts CSS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,8 +39,9 @@
     <link rel="stylesheet" href=" {% static 'css/style.css' %}">
 
 </head>
-<!-- Navigation -->
+
 <body class="d-flex flex-column h-100 main-bg">
+    <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
             <div class="container">
                 <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'images/logo-sm-l.png' %}"
@@ -50,32 +54,34 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
+                            <a class="nav-link {% if request.path == home_url %}active" aria-current="page{% endif %}"
                                 href="{% url 'index' %}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {% if request.path == recipes_url %}active{% endif %}"
-                                aria-current="page" href="{% url 'recipes_list' %}">Recipes</a>
+                            <a class="nav-link {% if request.path == recipes_url %}active"
+                                aria-current="page{% endif %}" href="{% url 'recipes_list' %}">Recipes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {% if request.path == club_url %}active{% endif %}" aria-current="page"
+                            <a class="nav-link {% if request.path == club_url %}active" aria-current="page{% endif %}"
                                 href="{% url 'club' %}">Gourmet Club</a>
                         </li>
                         {% if user.is_authenticated %}
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+                                data-bs-toggle="dropdown" aria-expanded="false" aria-current="page">
                                 Actions
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{% url 'my_recipe_list' %}">My Recipes</a></li>
-                                <li><a class="dropdown-item" href="{% url 'favorite_recipes' %}"><i
-                                            class="fa-solid fa-heart"></i>
-                                        Favorities</a></li>
+                                <li><a class="dropdown-item {% if request.path == my_recipe_list_url %}active"
+                                    aria-current="page{% endif %}" href="{% url 'my_recipe_list' %}">My Recipes</a></li>
+                                <li><a class="dropdown-item {% if request.path == favorite_recipes_url %}active"
+                                    aria-current="page{% endif %}" href="{% url 'favorite_recipes' %}"><i
+                                            class="fa-solid fa-heart"></i> Favorities</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="{% url 'add_recipe' %}">Add Recipe</a></li>
+                                <li><a class="dropdown-item {% if request.path == add_recipe_url %}active"
+                                    aria-current="page{% endif %}" href="{% url 'add_recipe' %}">Add Recipe</a></li>
                             </ul>
                         </li>
                         {% endif %}
@@ -89,17 +95,17 @@
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             {% if user.is_authenticated %}
                             <li class="nav-item">
-                                <a class="nav-link text-light {% if request.path == logout_url %}active{% endif %}"
-                                    aria-current="page" href="{% url 'account_logout' %}">Sign out</a>
+                                <a class="nav-link text-light {% if request.path == logout_url %}active"
+                                    aria-current="page{% endif %}" href="{% url 'account_logout' %}">Sign Out</a>
                             </li>
                             {% else %}
                             <li class="nav-item">
-                                <a class="nav-link text-light {% if request.path == signup_url %}active{% endif %}"
-                                    aria-current="page" href="{% url 'account_signup' %}">Register</a>
+                                <a class="nav-link text-light {% if request.path == signup_url %}active"
+                                    aria-current="page{% endif %}" href="{% url 'account_signup' %}">Sign Up</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light {% if request.path == login_url %}active{% endif %}"
-                                    aria-current="page" href="{% url 'account_login' %}">Log in</a>
+                                <a class="nav-link text-light {% if request.path == login_url %}active"
+                                    aria-current="page{% endif %}" href="{% url 'account_login' %}">Sign In</a>
                             </li>
                             {% endif %}
                             {% if user.is_authenticated %}
@@ -178,10 +184,10 @@
                 <div class="col-md-4 text-center text-md-end">
                     <p class="mb-0">
                         Follow us: 
-                        <i class="fab fa-facebook-square ms-2"></i>
-                        <i class="fab fa-youtube-square ms-2"></i>
-                        <i class="fab fa-instagram-square ms-2"></i>
-                        <i class="fab fa-youtube-square ms-2"></i>
+                        <a href="https://www.facebook.com/" target="_blank" class="social-link"><i class="fab fa-facebook-square ms-2"></i></a>
+                        <a href="https://www.youtube.com/" target="_blank" class="social-link"><i class="fab fa-youtube-square ms-2"></i></a>
+                        <a href="https://www.instagram.com/" target="_blank" class="social-link"><i class="fab fa-instagram-square ms-2"></i></a>
+                        <a href="https://www.youtube.com/" target="_blank" class="social-link"><i class="fab fa-youtube-square ms-2"></i></a>
                     </p>
                     <p class="mb-0">Email us: <i class="fa-solid fa-envelope ms-2"></i>info@gourmet.com</p>
                 </div>
