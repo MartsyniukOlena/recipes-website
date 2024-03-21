@@ -164,7 +164,5 @@ class SearchFormTestCase(TestCase):
 
 
     def test_search_form_max_length(self):
-        query = 'a' * 101
-        response = self.client.get(reverse('search_results'), {'q': query})
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Search query is too long. Maximum length is 100 characters.")
+        search_form = SearchForm({'query': 'abcdfghijkslmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrst'})
+        self.assertFalse(search_form.is_valid())

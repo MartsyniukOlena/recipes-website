@@ -1,5 +1,6 @@
-from .models import Comment, Recipe
+from django.core.validators import MaxLengthValidator
 from django import forms
+from .models import Comment, Recipe
 
 class CommentForm(forms.ModelForm):
     class Meta:
@@ -12,4 +13,4 @@ class RecipeForm(forms.ModelForm):
         fields = ['title', 'excerpt', 'ingredients', 'instructions', 'cooking_time', 'servings', 'status', 'featured_image']
 
 class SearchForm(forms.Form):
-    query = forms.CharField(label='Search')
+    query = forms.CharField(label='Search', max_length=100, validators=[MaxLengthValidator(100)])
