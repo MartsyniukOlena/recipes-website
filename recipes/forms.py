@@ -1,5 +1,5 @@
-from django.core.validators import MaxLengthValidator
 from django import forms
+from django.core.validators import MaxLengthValidator
 from .models import Comment, Recipe
 
 class CommentForm(forms.ModelForm):
