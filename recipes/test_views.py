@@ -3,7 +3,6 @@ from django.urls import reverse
 from django.test import TestCase
 from .forms import CommentForm
 from .models import Recipe
-import unittest
 
 class TestRecipeViews(TestCase):
 
