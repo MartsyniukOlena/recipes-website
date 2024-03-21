@@ -89,7 +89,6 @@ def add_recipe(request):
             recipe.author = request.user  
             recipe.slug = slugify(recipe.title)
             
-            # Check if the slug already exists
             existing_slugs = Recipe.objects.filter(slug__startswith=recipe.slug)
             if existing_slugs.exists():
                 recipe.slug = f"{recipe.slug}-{existing_slugs.count() + 1}"
@@ -99,11 +98,11 @@ def add_recipe(request):
             if recipe.status == 0:
                 messages.add_message(request, messages.SUCCESS, 'Draft recipe added successfully!')
             else:
-                messages.add_message(request, messages.ERROR, 'Recipe published successfully!')
+                messages.add_message(request, messages.SUCCESS, 'Recipe published successfully!')
 
             return redirect('recipe_detail', slug=recipe.slug)
         else:
-            messages.error(request, 'Error adding recipe.')
+            messages.add_message(request, messages.ERROR, 'Error adding recipe.')
     else:
         form = RecipeForm()
     
@@ -214,11 +213,11 @@ def search_results(request):
     query = request.GET.get('q')
 
     if not query:
-        messages.error(request, "Please enter a search query.")
+        messages.add_message(request, messages.ERROR, "Please enter a search query.")
         return render(request, 'recipes/search_results.html', {'recipes': []})
 
     if len(query) > 100:
-        messages.error(request, "Search query is too long. Maximum length is 100 characters.")
+        messages.add_message(request, messages.ERROR, "Search query is too long. Maximum length is 100 characters.")
         return render(request, 'recipes/search_results.html', {'recipes': []})
 
     recipes = Recipe.objects.filter(Q(title__icontains=query) | Q(content__icontains=query))
