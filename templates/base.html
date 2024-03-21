@@ -130,12 +130,13 @@
             </div>
         </div>
 
+
+        {% block content %}
+        <!-- Recipe Content Goes here -->
+        {% endblock content %}
+
         {% block carousel %}
         <!-- Carousel Content Goes here -->
-        {% endblock %}
-        
-        {% block content %}
-        <!-- Recipes list Goes here -->
         {% endblock %}
 
         {% block club %}
@@ -158,8 +159,8 @@
         <!-- Search Goes here -->
         {% endblock %}
 
-        {% block favourities %}
-        <!-- List of favourities Goes here -->
+        {% block favorities %}
+        <!-- List of favorities Goes here -->
         {% endblock %}
 
     </main>

@@ -39,7 +39,7 @@ def recipe_detail(request, slug):
 
     is_favorite = False
     if request.user.is_authenticated:
-        is_favorite = request.user.favourite.filter(slug=recipe.slug).exists()
+        is_favorite = request.user.favorite.filter(slug=recipe.slug).exists()
 
     comments = recipe.comments.all().order_by("-created_on")
     comment_count = recipe.comments.filter(approved=True).count()
@@ -221,24 +221,24 @@ def search_results(request):
         messages.error(request, "Search query is too long. Maximum length is 100 characters.")
         return render(request, 'recipes/search_results.html', {'recipes': []})
 
-    recipes = Recipe.objects.filter(Q(title__icontains=query) | Q(ingredients__icontains=query))
+    recipes = Recipe.objects.filter(Q(title__icontains=query) | Q(content__icontains=query))
     
     return render(request, 'recipes/search_results.html', {'recipes': recipes})
 
 
 
 def favorite_recipes(request):
-    favorite_recipes = request.user.favourite.all()
+    favorite_recipes = request.user.favorite.all()
     return render(request, 'recipes/favorite_recipes.html', {'favorite_recipes': favorite_recipes})
     
 
 def add_to_favorites(request, slug):
     recipe = get_object_or_404(Recipe, slug=slug)
     
-    if request.user.favourite.filter(slug=slug).exists():
+    if request.user.favorite.filter(slug=slug).exists():
         message = "Recipe already in favorites"
     else:
-        request.user.favourite.add(recipe)
+        request.user.favorite.add(recipe)
         message = "Recipe added to favorites"
 
     return JsonResponse({'message': message})
@@ -247,8 +247,8 @@ def add_to_favorites(request, slug):
 def remove_from_favorites(request, slug):
     recipe = get_object_or_404(Recipe, slug=slug)
     
-    if request.user.favourite.filter(slug=slug).exists():
-        request.user.favourite.remove(recipe)
+    if request.user.favorite.filter(slug=slug).exists():
+        request.user.favorite.remove(recipe)
         message = "Recipe removed from favorites"
     else:
         message = "Recipe is not in favorites"

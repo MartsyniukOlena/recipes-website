@@ -12,15 +12,14 @@ class Recipe(models.Model):
     User, on_delete=models.CASCADE, related_name="recipe_posts")
     featured_image = CloudinaryField('image', default='placeholder')
     excerpt = models.TextField(blank=True)
-    ingredients = models.TextField(verbose_name='Ingredients')
-    instructions = models.TextField(verbose_name='Instructions')    
-    cooking_time = models.PositiveIntegerField(help_text='Time in minutes', default=0, verbose_name='Cooking Time')
-    created_on = models.DateTimeField(auto_now_add=True, verbose_name='Created On')
+    content = models.TextField(default='', help_text='Ingredients and Instructions')
+    cooking_time = models.PositiveIntegerField(help_text='Time in minutes', default=0)
+    created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
-    updated_on = models.DateTimeField(auto_now=True, verbose_name='Updated On')
-    servings  = models.PositiveIntegerField(help_text='Number of servings', default=0, verbose_name='Servings')
+    updated_on = models.DateTimeField(auto_now=True)
+    servings  = models.PositiveIntegerField(help_text='Number of servings', default=0)
     is_featured = models.BooleanField(default=False)
-    favourites = models.ManyToManyField(User, related_name='favourite', blank=True, default=None)
+    favorites = models.ManyToManyField(User, related_name='favorite', blank=True, default=None)
 
     class Meta:
         ordering = ["-created_on"]

@@ -21,8 +21,7 @@ class RecipeFormTestCase(TestCase):
         recipe_form = RecipeForm({
             'title': 'Test Recipe',
             'excerpt': 'This is a test recipe',
-            'ingredients': 'Ingredient 1, Ingredient 2',
-            'instructions': 'Step 1: Do this, Step 2: Do that',
+            'content': 'Step 1: Do this, Step 2: Do that',
             'cooking_time': 30,
             'servings': 4,
             'status': 1,
@@ -35,8 +34,7 @@ class RecipeFormTestCase(TestCase):
         recipe_form = RecipeForm({
             'title': '',
             'excerpt': 'This is a test recipe',
-            'ingredients': 'Ingredient 1, Ingredient 2',
-            'instructions': 'Step 1: Do this, Step 2: Do that',
+            'content': 'Step 1: Do this, Step 2: Do that',
             'cooking_time': 30,
             'servings': 4,
             'status': 1,
@@ -49,8 +47,7 @@ class RecipeFormTestCase(TestCase):
         recipe_form = RecipeForm({
             'title': 'Test Recipe',
             'excerpt': '',
-            'ingredients': 'Ingredient 1, Ingredient 2',
-            'instructions': 'Step 1: Do this, Step 2: Do that',
+            'content': 'Step 1: Do this, Step 2: Do that',
             'cooking_time': 30,
             'servings': 4,
             'status': 1,
@@ -58,39 +55,12 @@ class RecipeFormTestCase(TestCase):
     })
         self.assertTrue(recipe_form.is_valid())
 
-    def test_form_ingredients_is_required(self):
+
+    def test_form_content_is_required(self):
         recipe_form = RecipeForm({
             'title': 'Test Recipe',
             'excerpt': '',
-            'ingredients': '',
-            'instructions': 'Step 1: Do this, Step 2: Do that',
-            'cooking_time': 30,
-            'servings': 4,
-            'status': 1,
-            'featured_image': '/workspace/recipes-website/static/images/placeholder.jpg'
-    })
-        self.assertFalse(recipe_form.is_valid(), msg="Form is valid")
-
-    def test_form_ingredients_is_required(self):
-        recipe_form = RecipeForm({
-            'title': 'Test Recipe',
-            'excerpt': '',
-            'ingredients': '',
-            'instructions': 'Step 1: Do this, Step 2: Do that',
-            'cooking_time': 30,
-            'servings': 4,
-            'status': 1,
-            'featured_image': '/workspace/recipes-website/static/images/placeholder.jpg'
-    })
-        self.assertFalse(recipe_form.is_valid(), msg="Form is valid")
-
-
-    def test_form_instructions_is_required(self):
-        recipe_form = RecipeForm({
-            'title': 'Test Recipe',
-            'excerpt': '',
-            'ingredients': 'Step 1: Do this, Step 2: Do that',
-            'instructions': '',
+            'content': '',
             'cooking_time': 30,
             'servings': 4,
             'status': 1,
@@ -103,8 +73,7 @@ class RecipeFormTestCase(TestCase):
         recipe_form = RecipeForm({
             'title': 'Test Recipe',
             'excerpt': 'This is a test recipe',
-            'ingredients': 'Ingredient 1, Ingredient 2',
-            'instructions': 'Step 1: Do this, Step 2: Do that',
+            'content': 'Step 1: Do this, Step 2: Do that',
             'servings': 4,
             'status': 1,
             'featured_image': '/workspace/recipes-website/static/images/placeholder.jpg'
@@ -115,8 +84,7 @@ class RecipeFormTestCase(TestCase):
         recipe_form = RecipeForm({
             'title': 'Test Recipe',
             'excerpt': 'This is a test recipe',
-            'ingredients': 'Ingredient 1, Ingredient 2',
-            'instructions': 'Step 1: Do this, Step 2: Do that',
+            'content': 'Step 1: Do this, Step 2: Do that',
             'cooking_time': 30,
             'status': 1,
             'featured_image': '/workspace/recipes-website/static/images/placeholder.jpg'
@@ -128,8 +96,7 @@ class RecipeFormTestCase(TestCase):
         recipe_form = RecipeForm({
             'title': 'Test Recipe',
             'excerpt': 'This is a test recipe',
-            'ingredients': 'Ingredient 1, Ingredient 2',
-            'instructions': 'Step 1: Do this, Step 2: Do that',
+            'content': 'Step 1: Do this, Step 2: Do that',
             'cooking_time': 30,
             'servings': 4,
             'featured_image': '/workspace/recipes-website/static/images/placeholder.jpg'
@@ -141,8 +108,7 @@ class RecipeFormTestCase(TestCase):
         recipe_form = RecipeForm({
             'title': 'Test Recipe',
             'excerpt': '',
-            'ingredients': 'Ingredient 1, Ingredient 2',
-            'instructions': 'Step 1: Do this, Step 2: Do that',
+            'content': 'Step 1: Do this, Step 2: Do that',
             'cooking_time': 30,
             'servings': 4,
             'status': 1,
