@@ -4,8 +4,10 @@ from django.contrib import messages
 from django.utils.text import slugify
 from django.http import HttpResponseRedirect, JsonResponse
 from django.db.models import Q
+from django.db import IntegrityError
 from .models import Recipe, Comment
 from .forms import CommentForm, RecipeForm, SearchForm
+
 
 # Create your views here.
 
@@ -130,16 +132,15 @@ def add_recipe(request):
             recipe = form.save(commit=False)
             recipe.author = request.user
             recipe.slug = slugify(recipe.title)
-            existing_slugs = Recipe.objects.filter(slug__startswith=recipe.slug)
-            if existing_slugs.exists():
-                recipe.slug = f"{recipe.slug}-{existing_slugs.count() + 1}"
-            recipe.save()
-            if recipe.status == 0:
-                messages.add_message(request, messages.SUCCESS, 'Draft recipe added successfully!')
-            else:
-                messages.add_message(request, messages.SUCCESS, 'Recipe published successfully!')
-
-            return redirect('recipe_detail', slug=recipe.slug)
+            try:
+                recipe.save()
+                if recipe.status == 0:
+                    messages.add_message(request, messages.SUCCESS, 'Draft recipe added successfully!')
+                else:
+                    messages.add_message(request, messages.SUCCESS, 'Recipe published successfully!')
+                return redirect('recipe_detail', slug=recipe.slug)
+            except IntegrityError:
+                messages.add_message(request, messages.ERROR, 'A recipe with the same title already exists. Please choose a different title.')
         else:
             messages.add_message(request, messages.ERROR, 'Error adding recipe.')
     else:
