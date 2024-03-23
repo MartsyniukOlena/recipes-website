@@ -315,7 +315,7 @@ Recipes Page
 ![Recipes Page](readme-media/recipes-desktop.png)
 
 Gourmet Club Page
-![Gourmet Club](readme-media/club.png)
+![Gourmet Club](readme-media/club-desctop.png)
 My Recipes Page
 ![My Recipes](readme-media/my-recipes-desktop.png)
 Favorities
@@ -405,9 +405,8 @@ Steps for deployment:
 
 ## Technologies
 
-- [Django](https://www.djangoproject.com/) - web framework used for building the website.
-- [Django-allauth](https://django-allauth.readthedocs.io/en/latest/installation.html) - an authentication system for Django used for handling user authentication, registration, 
-  account management.
+- [Django](https://www.djangoproject.com/) - web framework for building the website.
+- [Django-allauth](https://django-allauth.readthedocs.io/en/latest/installation.html) - an authentication system for Django to handle user authentication, registration, account management.
 - [Gunicorn](https://gunicorn.org/) - served as a production-ready server for running Django applications.
 - [Psycopg2](https://www.psycopg.org/docs/) - enabled Django to interact with PostgreSQL databases.
 - [PostgreSQL](https://www.postgresql.org/) - relational database management system.
@@ -438,4 +437,5 @@ Steps for deployment:
 - [Cafe Fernado](https://cafefernando.com/the-artful-baker-cookbook/) - desserts recipes were copied from the book.
 - [Pexels](https://www.pexels.com/) - all images were downloaded from Pexel.
 - [Pinterest](https://www.pinterest.com/pin/272327108710190873/) - logo was downloaded from Pinterest.
+- [flyUX-pp4](https://github.com/CarlMurray/flyUX-pp4), [Meal Planner](https://github.com/AliOKeeffe/PP4_My_Meal_Planner) - reference for testing
 
