@@ -119,7 +119,7 @@ __Adding Recipes__
 The form provides a structured interface for users to input details about their recipe.
 It standardizes the submission process, ensuring that all necessary information is collected in a systematic manner. This helps maintain data consistency and makes it easier for users to share their recipes.
 
-![Add Recipe]()
+![Add Recipe](readme-media/add-recipe.png)
 
 
 __Recipe Detail Page__
@@ -173,40 +173,40 @@ __Delete Recipe and Comment Modal:__ provides a user-friendly way to confirm del
 
 ### The user experience (UX) of all pages:
 
-- Navigation bar: 
+__Navigation bar:__
 
 Navigation bar to direct users to different sections of the website.
 Search Functionality: Search form allowing users to find specific recipes quickly.
 
-- User Authentication Pages (Sign Up, Sign In, Sign Out):
+__User Authentication Pages (Sign Up, Sign In, Sign Out):__
 
 Form Design: User-friendly forms for sign-up and sign-in processes with clear labels and instructions.
 
-- Home Page:
+__Home Page:__
 
 Visuals: Features images of delicious food, enticing users to explore further.
 Content: Highlights featured recipes to engage users.
 Call to Action: Prompts users to sign up, browse recipes, or join the community.
 
-- Recipe List Page:
+__Recipe List Page:__
 
 Grid Layout: Recipes displayed in grid layout with images, titles, and brief descriptions.
 Pagination: If there are many recipes, pagination controls to manage the content.
 
-- Recipe Detail Page:
+__Recipe Detail Page:__
 
 Recipe Presentation: Clear presentation of the recipe including title, image, cooking time, servings, author information, instructions, ingredients.
 Interaction: Ability for users to favorite recipes, leave comments.
 
-- Activity Feed: Overview of user's recent activity, such as recipes posted and drafted or recipes favorited.
+__Activity Feed:__ Overview of user's recent activity, such as recipes posted and drafted or recipes favorited.
 
-- Add Recipe Page:
+__Add Recipe Page:__
 
 Form Design: Intuitive form for users to input recipe details, including title, excerpt, ingredients, instructions, images, servings, cooking time, status.
 Validation: Validation checks to ensure all required fields are filled out correctly.
 Image Upload: Option to upload images of the recipe for visual appeal.
 
-- Club Page:
+__Club Page:__
 
 Club: Information about upcoming events, workshops, or cooking classes.
 Joining Options: Clear instructions and forms for users to join the club.
@@ -217,70 +217,67 @@ Messages are used to provide feedback to users after performing actions, such as
 Different message levels (e.g., messages.SUCCESS, messages.ERROR) are used to convey the nature of the message, whether it's a success message or an error message.
 Messages enhance the user experience by providing immediate feedback, helping users understand the result of their interactions with the platform.
 
+![Comment Deleted](readme-media/comment-deleted.png)
+![Comment Submited](readme-media/comment-submited.png)
+![Comment Updated](readme-media/comment-updated.png)
+![Recipe Added](readme-media/draft-recipe-added.png)
+![Recipe Deleted](readme-media/recipe-deleted.png)
+![Recipe Edited](readme-media/recipe-edited.png)
+![Recipe Published](readme-media/recipe-published.png)
+![Sign in](readme-media/sccessfully-signed-in.png)
+![](readme-media/recipe-removed-favorities.png)
+![](readme-media/recipe-added-to-favorities.png)
+
+
 ### Modal Dialogs:
 
 Modal dialogs are used for confirmation prompts when performing critical actions like deleting a recipe or comment. These dialogs ensure that users confirm their intent before proceeding with potentially irreversible actions.
 
-
 ### Style
 
-Body Font: Poppins, sans-serif a fallback font.
+__Body Font:__ Poppins, sans-serif a fallback font.
 
-Colors:
-#000000: Black
+__Colors:__
 
-#FFFFFF: White
+- #000000: Black
 
-#E69C24: Amber
+- #FFFFFF: White
 
-#234E5A: Dark Slate Blue
+- #E69C24: Amber
 
-#00AB8C: Caribbean Green
+- #234E5A: Dark Slate Blue
 
-#E84610: Cinnabar
+- #00AB8C: Caribbean Green
 
-#650000: Maroon
+- #E84610: Cinnabar
 
-rgb(172, 175, 175): Dusty Gray
+- #650000: Maroon
 
-rgb(222, 146, 168): Pink Lavender
+- rgb(172, 175, 175): Dusty Gray
 
-Images
+- rgb(222, 146, 168): Pink Lavender
+
+__Images__
 
 Several static image are used on the website(three images depicting food and spices for carousel, a default image for recipes if the user doesn't upload their, placeholder for Club page, logo and favicon). Users can add images for thier recipes.
 
-Fonts
+__Fonts__
 
-the "Poppins" font is used for the website body, which was imported from Google Fonts. In case the main font fails to load properly, the backup font "Sans Serif" is used to ensure consistent readability across the site.
+The "Poppins" font is used for the website body, which was imported from Google Fonts. In case the main font fails to load properly, the backup font "Sans Serif" is used to ensure consistent readability across the site.
 
-## Technologies
+## Data Model
 
-- [Django](https://www.djangoproject.com/) - web framework used for building the website.
-- [Django-allauth](https://django-allauth.readthedocs.io/en/latest/installation.html) - an authentication system for Django used for handling user authentication, registration, 
-  account management.
-- [Gunicorn](https://gunicorn.org/) - served as a production-ready server for running Django applications.
-- [Psycopg2](https://www.psycopg.org/docs/) - enabled Django to interact with PostgreSQL databases.
-- [PostgreSQL](https://www.postgresql.org/) - relational database management system.
-- [Heroku](https://dashboard.heroku.com/login) - cloud-based platform used for deploying the site.
-- [Responsinator](http://www.responsinator.com/) - program used to check how the site looks on the different devices.
-- [Chrome Dev Tools](https://developer.chrome.com/docs/devtools/) - used during all website development for checking outcomes and for testing responsiveness and performance.
-- [Font Awesome](https://fontawesome.com/) - used to add heart symbol to Favorities button and navbar tab.
-- [GitHub](https://github.com/) - stores, manages and allows to share the code.
-- [Google Fonts](https://fonts.google.com/) - used to import fonts.
-- [pep8ci](https://pep8ci.herokuapp.com/) - checked the Python code to ensure adherence to PEP8 standards.
-- [Jshint](https://jshint.com/) - validated javascript code.
-- [W3C Validator](https://validator.w3.org/) - validated html code.
-- [W3C Validator](https://jigsaw.w3.org/css-validator/validator) - validated css code.
-- [ColorsSpace](https://mycolor.space/) - Used to create colour palette.
-- [Favicon](https://favicon.io/) - used to create the favicon.
-- [Lucidchart](https://lucid.app/documents#/dashboard) - used to create the database diagram.
-- [Grammarly](https://app.grammarly.com/) - used to check grammar and edit text.
-- [Summernote](https://summernote.org/) - an editor to styly recipes.
-- [Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest/) - a library that integrates Bootstrap 5 with Django forms through Django-Crispy-Forms. It provides 
-   Bootstrap 5 styling for Django forms.
-- [WhiteNoise](https://whitenoise.readthedocs.io/en/latest/) - it was used to serve static files efficiently in production environments.
-- [Cloudinary](https://cloudinary.com/) - it was used for storing and serving media files in the application.
-- [Bootstrap 5.0.2](https://getbootstrap.com/docs/5.0/getting-started/introduction/) - used to create responsive, mobile-first front-end website.
+The data model defines the structure for managing recipes, comments, club information, and event attendance form.
+
+The Recipe model represents individual recipes, storing details such as title, author, featured image, content, cooking time, and status. It also allows users to favorite recipes.
+
+Comments on recipes are managed through the Comment model, which associates each comment with a recipe and its author. Comments include the comment body, approval status, and creation date.
+
+Club model stores information like the club title, profile image, content, and update timestamp.
+
+The EventForm model handles submissions for event attendance, capturing details such as the name, email, message, and read status.
+
+![Data Model](readme-media/data-model.jpeg)
 
 ## Testing
 
@@ -300,60 +297,145 @@ The website was tested in Windows and Android.
 ### Bugs resoled and unresolved:
 
 Resolved bugs:
-    - Add Itegrity Error to the add_recipe view to inform a user that the recipe with the same title exists so the user chooses the different title.
+    Add Itegrity Error to the add_recipe view to inform a user that the recipe with the same title exists so the user chooses the different title.
 
 Unresolved bugs:
-    No unresolved bugs.
+    Add Cancel button for editing and adding recipes.
 
 
 ### Performance Testing:
 
 Performance testing was done with Lighthouse. The current results are the following:
 
-Desktop
-Home Page
-![Home Page]()
-Recipes Page
-![]()
-Gourmet Club Page
-![]()
-My Recipes Page
-![]()
-Favorities
-![]()
-Add Recipe
-![]()
-Sign In
-![]()
-Sign Up
-![]()
-Log Out
-![]()
-Search Reslts
-![]()
-Edit Recipe
-![]()
+__Desktop__
 
-Mobile
 Home Page
-![Home Page]()
+![Home Page](readme-media/home-desktop.png)
 Recipes Page
-![]()
+![Recipes Page](readme-media/recipes-desktop.png)
+
 Gourmet Club Page
-![]()
+![Gourmet Club](readme-media/club.png)
 My Recipes Page
-![]()
+![My Recipes](readme-media/my-recipes-desktop.png)
 Favorities
-![]()
+![Favorities](readme-media/favorite-desktop.png)
 Add Recipe
-![]()
+![Add Recipe](readme-media/add-recipe-desktop.png)
 Sign In
-![]()
+![Sign In](readme-media/signin-desktop.png)
 Sign Up
-![]()
+![Sign Up](readme-media/signup-desktop.png)
 Log Out
-![]()
+![Log Out](readme-media/sign-out-desktop.png)
 Search Reslts
-![]()
+![Search Reslts](readme-media/search-desktop.png)
 Edit Recipe
-![]()
+![Edit Recipe](readme-media/edit-recipe-desktop.png)
+Recipe Detail Page
+![Edit Recipe](readme-media/recipe-detail-desctop.png)
+
+__Mobile__
+Home Page
+![Home Page](readme-media/home-mobile.png)
+Recipes Page
+![Recipes](readme-media/recipes-mobile.png)
+Gourmet Club Page
+![Gourmet Club](readme-media/club-mobile.png)
+My Recipes Page
+![My Recipes](readme-media/my-recipes-mobile.png)
+Favorities
+![Favorities](readme-media/favorite-mobile.png)
+Add Recipe
+![Add Recipe](readme-media/add-recipe-mobile.png)
+Sign In
+![Sign In](readme-media/signin-mobile.png)
+Sign Up
+![Sign Up](readme-media/sign-up-mobile.png)
+Log Out
+![Log Out](readme-media/sign-out-mobile.png)
+Search Reslts
+![Search Reslts](readme-media/search-mobile.png)
+Edit Recipe
+![Edit Recipe](readme-media/edit-recipe-mobile.png)
+
+Recipe Detail Page
+
+![Recipe Detail Page](readme-media/recipe-detail-mobile.png)
+
+### Code Validation
+
+HTML: No errors were found when passing through the [W3C Validator](https://validator.w3.org/)
+CSS: No errors were found when passing through the [Jigsaw validator](https://jigsaw.w3.org/css-validator/validator)
+Python: No errors were found when passing through the [pep8ci](https://pep8ci.herokuapp.com/) 
+JS Hint: No errors were found when passing through the [Jshint](https://jshint.com/)
+
+### Features and User Stories Testing
+
+Home Page
+![Home Page](readme-media/home-page-testing.png)
+Recipes Page
+![Recipes](readme-media/recipes-page-testing.png)
+My Recipes Page
+![My Recipes](readme-media/my-recipes-testing.png)
+Favorities
+![Favorities](readme-media/favorite-testing.png)
+Add Recipe
+![Add Recipe](readme-media/add-recipe-testing.png)
+Navbar
+![Navbar](readme-media/navbar-testing.png)
+Edit Recipe
+![Edit Recipe](readme-media/edit-recipe-testing.png)
+Event Form
+![Event Form](readme-media/event-form-testing.png)
+Footer
+![Footer](readme-media/footer-testing.png)
+Recipe Detail Page
+![Edit Recipe](readme-media/recipe-detail-testing.png)
+
+## Deployment
+This project was deployed using Code Institute's mock terminal for Heroku.
+
+Steps for deployment:
+- Create a new Heroku app. --> Assign app name, choose region.
+- Go to settings. --> Create Config Vars, add DATABASE_URL, CLOUDINARY_URL, SECRET_KEY
+- Go to Deploy. --> Choose GitHub as deploying method 
+- Connect your repository
+- Deploy Branch 
+
+## Technologies
+
+- [Django](https://www.djangoproject.com/) - web framework used for building the website.
+- [Django-allauth](https://django-allauth.readthedocs.io/en/latest/installation.html) - an authentication system for Django used for handling user authentication, registration, 
+  account management.
+- [Gunicorn](https://gunicorn.org/) - served as a production-ready server for running Django applications.
+- [Psycopg2](https://www.psycopg.org/docs/) - enabled Django to interact with PostgreSQL databases.
+- [PostgreSQL](https://www.postgresql.org/) - relational database management system.
+- [Heroku](https://dashboard.heroku.com/login) - cloud-based platform used for deploying the site.
+- [Responsinator](http://www.responsinator.com/) - program used to check how the site looks on the different devices.
+- [Chrome Dev Tools](https://developer.chrome.com/docs/devtools/) - used during all website development for checking outcomes and for testing responsiveness and performance.
+- [GitHub](https://github.com/) - stores, manages and allows to share the code.
+- [Google Fonts](https://fonts.google.com/) - used to import fonts.
+- [pep8ci](https://pep8ci.herokuapp.com/) - checked the Python code to ensure adherence to PEP8 standards.
+- [Jshint](https://jshint.com/) - validated javascript code.
+- [W3C Validator](https://validator.w3.org/) - validated html code.
+- [W3C Validator](https://jigsaw.w3.org/css-validator/validator) - validated css code.
+- [Summernote](https://summernote.org/) - an editor to styly recipes.
+- [Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest/) - a library that integrates Bootstrap 5 with Django forms through Django-Crispy-Forms. It provides 
+   Bootstrap 5 styling for Django forms.
+- [WhiteNoise](https://whitenoise.readthedocs.io/en/latest/) - it was used to serve static files efficiently in production environments.
+- [Cloudinary](https://cloudinary.com/) - it was used for storing and serving media files in the application.
+- [Bootstrap 5.0.2](https://getbootstrap.com/docs/5.0/getting-started/introduction/) - used to create responsive, mobile-first front-end website.
+
+## Credits and References
+
+- [Code Institute: Walkthrough Project - I think I Blog](https://github.com/Code-Institute-Solutions/Django3blog)
+- [Font Awesome](https://fontawesome.com/) - used to add heart symbol to Favorities button and navbar tab.
+- [Grammarly](https://app.grammarly.com/) - used to check grammar and edit text.
+- [Lucidchart](https://lucid.app/documents#/dashboard) - used to create the database diagram.
+- [ColorsSpace](https://mycolor.space/) - used to create colors.
+- [Favicon](https://favicon.io/) - used to create the favicon.
+- [Cafe Fernado](https://cafefernando.com/the-artful-baker-cookbook/) - desserts recipes were copied from the book.
+- [Pexels](https://www.pexels.com/) - all images were downloaded from Pexel.
+- [Pinterest](https://www.pinterest.com/pin/272327108710190873/) - logo was downloaded from Pinterest.
+
