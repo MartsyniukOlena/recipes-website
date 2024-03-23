@@ -27,4 +27,4 @@ class EventForm(models.Model):
     read = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"Collaboration request from {self.name}"
+        return f"Event attendance form from {self.name}"

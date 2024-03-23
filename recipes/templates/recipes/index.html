@@ -7,17 +7,17 @@
   <h1 class="pb-2 border-bottom">Explore Gourmet</h1>
   <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
     <div class="feature col">
-      <h5>Gourmet: Ultimate Culinary Destination!</h5>
+      <h2>Ultimate Culinary Destination</h2>
       <p>Indulge your passion for cooking and join the vibrant community at Gourmet.<br>
         Our platform welcomes you to showcase your culinary
-        creativity and discover a world of flavors.</p>
+        creativity and discover a world of flavors.<br><br></p>
         <div class="text-center heading-featured col">
         <a class="btn btn-outline-dark nav-link {% if request.path == signup_url %}active"
         aria-current="page{% endif %}" href="{% url 'account_signup' %}">Sign Up</a>
       </div>
     </div>
     <div class="feature col">
-      <h5>Let Your Taste Buds Dance</h5>
+      <h2>Let Your Taste Buds Dance</h2>
       <p>With a diverse range of recipes spanning cuisines from around the globe, Gourmet is your passport to culinary
         exploration.<br><br><br></p>
         <div class="text-center heading-featured col">
@@ -26,8 +26,8 @@
       </div>
     </div>
     <div class="feature col">
-      <h5>Endless Inspiration</h5>
-      <p>Our club offers a vibrant community where members can come together to share knowledge, explore new flavors, and
+      <h2>Endless Inspiration</h2>
+      <p><br>Our club offers a vibrant community where members can come together to share knowledge, explore new flavors, and
         celebrate the art of cooking.<br><br></p>
         <div class="text-center heading-featured col">
         <a class="btn btn-outline-dark nav-link {% if request.path == club_url %}active" aria-current="page{% endif %}"
@@ -47,7 +47,7 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="{% static 'images/hero.webp' %}" class="d-block w-100" alt="Desserts">
+      <img src="{% static 'images/desserts.webp' %}" class="d-block w-100" alt="Desserts">
     </div>
     <div class="carousel-item">
       <img src="{% static 'images/hero-2.webp' %}" class="d-block w-100" alt="Spices">
