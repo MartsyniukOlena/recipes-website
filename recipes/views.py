@@ -207,6 +207,7 @@ def comment_delete(request, slug, comment_id):
     return HttpResponseRedirect(reverse('recipe_detail', args=[slug]))
 
 
+@login_required
 def recipe_edit(request, slug):
     """
     View function for editing an existing recipe.
@@ -215,27 +216,35 @@ def recipe_edit(request, slug):
     ``form``
         An instance of :form:`recipes.RecipeForm`
     **Template:**
-    :template:`recipes/add_recipe.html`
+    :template:`recipes/edit_recipe.html`
     """
     recipe = get_object_or_404(Recipe, slug=slug)
-    
+
     if recipe.author != request.user:
         messages.error(request, 'Sorry, only the author can edit this recipe.')
         return redirect(reverse('home'))
-    
+
     if request.method == 'POST':
-        form = RecipeForm(request.POST, instance=recipe)
+        form = RecipeForm(request.POST, request.FILES, instance=recipe)  # Include request.FILES for file uploads
         if form.is_valid():
-            new_recipe = form.save(commit=False)
-            new_recipe.slug = slugify(new_recipe.title)
-            new_recipe.save()
+            updated_recipe = form.save(commit=False)
+            updated_recipe.slug = slugify(updated_recipe.title)
+            updated_recipe.save()
             messages.success(request, 'Successfully updated recipe!')
-            return redirect('recipe_detail', slug=new_recipe.slug)
+            return redirect(reverse('recipe_detail', args=[updated_recipe.slug]))
         else:
             messages.error(request, 'Failed to update recipe. Please ensure the form is valid.')
     else:
         form = RecipeForm(instance=recipe)
-    return render(request, 'recipes/recipe_edit.html', {'form': form})
+        messages.info(request, f'You are editing {recipe.title}')
+
+    template = 'recipes/edit_recipe.html'
+    context = {
+        'form': form,
+        'recipe': recipe,
+    }
+
+    return render(request, template, context)
 
 
 def recipe_delete(request, slug):
