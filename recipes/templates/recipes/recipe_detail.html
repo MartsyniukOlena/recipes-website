@@ -10,10 +10,8 @@
                 <div class="col p-4 d-flex flex-column position-static">
                     <h1 class="recipe-title">{{ recipe.title }}</h1>
                     <p class="recipe-excerpt">{{ recipe.excerpt | linebreaks }}</p>
-                    <p class="card-text"><span><i class="fa-regular fa-clock"></i> {{ recipe.cooking_time }}
-                            minutes</span>
-                        |
-                        <span><i class="fa-solid fa-users"></i> {{ recipe.servings }}</span></p>
+                    <p class="card-text"><i class="fa-regular fa-clock"></i>{{ recipe.cooking_time }} minutes</p>
+                    <p><i class="fa-solid fa-users"></i>{{ recipe.servings }}</p>
                     <p class="recipe-subtitle">{{ recipe.author }} | {{ recipe.created_on }}</p>
                 </div>
                 <div class="col-auto d-none d-lg-block">
