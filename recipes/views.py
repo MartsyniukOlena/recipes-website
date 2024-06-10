@@ -111,7 +111,7 @@ def index(request):
     }
     return render(request, 'recipes/index.html', context=context)
 
-@login_required
+
 def add_recipe(request):
     """
     View function for adding a new recipe.
@@ -148,7 +148,7 @@ def add_recipe(request):
         form = RecipeForm()
     return render(request, 'recipes/add_recipe.html', {'form': form})
 
-@login_required
+
 def comment_edit(request, slug, comment_id):
     """
     Display an individual comment for edit.
@@ -181,7 +181,7 @@ def comment_edit(request, slug, comment_id):
 
     return HttpResponseRedirect(reverse('recipe_detail', args=[slug]))
 
-@login_required
+
 def comment_delete(request, slug, comment_id):
     """
     Delete an individual comment.
@@ -206,7 +206,7 @@ def comment_delete(request, slug, comment_id):
 
     return HttpResponseRedirect(reverse('recipe_detail', args=[slug]))
 
-@login_required
+
 def recipe_edit(request, slug):
     """
     View function for editing an existing recipe.
@@ -237,7 +237,6 @@ def recipe_edit(request, slug):
     return render(request, 'recipes/recipe_edit.html', {'form': form})
 
 
-@login_required
 def recipe_delete(request, slug):
     """
     View function for deleting an existing recipe.
