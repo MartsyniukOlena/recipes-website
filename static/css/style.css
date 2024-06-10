@@ -59,10 +59,6 @@ body {
     background-color: #E69C24;
 }
 
-.card-body button {
-    margin: 5px;
-}
-
 .card {
     border: none;
 }
@@ -116,6 +112,10 @@ body {
 
 .btn-add-delete i {
     color: #E84610;
+}
+
+.btn-add-delete {
+    margin-top: 5px;
 }
 
 .faded {

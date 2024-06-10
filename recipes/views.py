@@ -127,6 +127,10 @@ def add_recipe(request):
 
     :template:`recipes/add_recipe.html`
     """
+    if not request.user.is_authenticated:
+        messages.error(request, 'Sorry, only authenticated users can add recipes.')
+        return redirect(reverse('account_login'))
+
     if request.method == 'POST':
         form = RecipeForm(request.POST)
         if form.is_valid():
@@ -358,12 +362,11 @@ def add_to_favorites(request, slug):
     """
     recipe = get_object_or_404(Recipe, slug=slug)
     if request.user.favorite.filter(slug=slug).exists():
-        message = "Recipe already in Favorites"
+        messages.info(request, "Recipe already in Favorites")
     else:
         request.user.favorite.add(recipe)
-        message = "Recipe added to Favorites"
-
-    return JsonResponse({'message': message})
+        messages.success(request, "Recipe added to Favorites")
+    return redirect(reverse('recipe_detail', args=[slug]))
 
 @login_required
 def remove_from_favorites(request, slug):
@@ -373,8 +376,7 @@ def remove_from_favorites(request, slug):
     recipe = get_object_or_404(Recipe, slug=slug)
     if request.user.favorite.filter(slug=slug).exists():
         request.user.favorite.remove(recipe)
-        message = "Recipe removed from Favorites"
+        messages.success(request, "Recipe removed from Favorites")
     else:
-        message = "Recipe is not in Favorites"
-
-    return JsonResponse({'message': message})
+        messages.info(request, "Recipe is not in Favorites")
+    return redirect(reverse('recipe_detail', args=[slug]))
