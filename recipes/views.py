@@ -5,6 +5,7 @@ from django.utils.text import slugify
 from django.http import HttpResponseRedirect, JsonResponse
 from django.db.models import Q
 from django.db import IntegrityError
+from django.contrib.auth.decorators import login_required
 from .models import Recipe, Comment
 from .forms import CommentForm, RecipeForm, SearchForm
 
@@ -110,7 +111,7 @@ def index(request):
     }
     return render(request, 'recipes/index.html', context=context)
 
-
+@login_required
 def add_recipe(request):
     """
     View function for adding a new recipe.
@@ -147,7 +148,7 @@ def add_recipe(request):
         form = RecipeForm()
     return render(request, 'recipes/add_recipe.html', {'form': form})
 
-
+@login_required
 def comment_edit(request, slug, comment_id):
     """
     Display an individual comment for edit.
@@ -180,7 +181,7 @@ def comment_edit(request, slug, comment_id):
 
     return HttpResponseRedirect(reverse('recipe_detail', args=[slug]))
 
-
+@login_required
 def comment_delete(request, slug, comment_id):
     """
     Delete an individual comment.
@@ -205,7 +206,7 @@ def comment_delete(request, slug, comment_id):
 
     return HttpResponseRedirect(reverse('recipe_detail', args=[slug]))
 
-
+@login_required
 def recipe_edit(request, slug):
     """
     View function for editing an existing recipe.
@@ -231,7 +232,7 @@ def recipe_edit(request, slug):
         form = RecipeForm(instance=recipe)
     return render(request, 'recipes/recipe_edit.html', {'form': form})
 
-
+@login_required
 def recipe_delete(request, slug):
     """
     View function for deleting an existing recipe.
@@ -254,7 +255,7 @@ def recipe_delete(request, slug):
                              'Error deleting recipe!')
     return HttpResponseRedirect(reverse('recipes_list'))
 
-
+@login_required
 def my_recipe_list(request):
     """
     View function for displaying a list of recipes authored by the current user.
@@ -312,7 +313,7 @@ def search_results(request):
     recipes = Recipe.objects.filter(Q(title__icontains=query) | Q(content__icontains=query))
     return render(request, 'recipes/search_results.html', {'recipes': recipes})
 
-
+@login_required
 def favorite_recipes(request):
     """
     View function for displaying a list of favorite recipes for the current user.
@@ -328,7 +329,7 @@ def favorite_recipes(request):
     favorite_recipes = request.user.favorite.all()
     return render(request, 'recipes/favorite_recipes.html', {'favorite_recipes': favorite_recipes})
 
-
+@login_required
 def add_to_favorites(request, slug):
     """
     View function for adding a recipe to the user's favorites.
@@ -343,7 +344,7 @@ def add_to_favorites(request, slug):
 
     return JsonResponse({'message': message})
 
-
+@login_required
 def remove_from_favorites(request, slug):
     """
     View function for removing a recipe from the user's favorites.
