@@ -220,7 +220,8 @@ def recipe_edit(request, slug):
     recipe = get_object_or_404(Recipe, slug=slug)
     
     if recipe.author != request.user:
-        raise Http404("You are not allowed to edit this recipe.")
+        messages.error(request, 'Sorry, only the author can edit this recipe.')
+        return redirect(reverse('home'))
     
     if request.method == 'POST':
         form = RecipeForm(request.POST, instance=recipe)
@@ -228,10 +229,10 @@ def recipe_edit(request, slug):
             new_recipe = form.save(commit=False)
             new_recipe.slug = slugify(new_recipe.title)
             new_recipe.save()
-            messages.add_message(request, messages.SUCCESS, 'Recipe updated!')
+            messages.success(request, 'Successfully updated recipe!')
             return redirect('recipe_detail', slug=new_recipe.slug)
         else:
-            messages.add_message(request, messages.ERROR, 'Error editing recipe!')
+            messages.error(request, 'Failed to update recipe. Please ensure the form is valid.')
     else:
         form = RecipeForm(instance=recipe)
     return render(request, 'recipes/recipe_edit.html', {'form': form})
@@ -252,14 +253,15 @@ def recipe_delete(request, slug):
     recipe = get_object_or_404(Recipe, slug=slug)
 
     if recipe.author != request.user:
-        raise Http404("You are not allowed to delete this recipe.")
+        messages.error(request, 'You are not allowed to delete this recipe.')
+        return redirect(reverse('home'))
 
     if request.method == 'POST':
         recipe.delete()
-        messages.add_message(request, messages.SUCCESS, 'Recipe deleted!')
+        messages.success(request, 'Recipe deleted!')
         return HttpResponseRedirect(reverse('recipes_list'))
     else:
-        messages.add_message(request, messages.ERROR, 'Invalid request method for deleting recipe.')
+        messages.error(request, 'Invalid request method for deleting recipe.')
 
     return HttpResponseRedirect(reverse('recipes_list'))
 
