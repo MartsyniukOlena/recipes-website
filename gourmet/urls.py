@@ -28,4 +28,4 @@ urlpatterns = [
     path('', include('recipes.urls')),
 ]
 
-handler404 = 'boutique_ado.views.handler404'
+handler404 = 'gourmet.views.handler404'
