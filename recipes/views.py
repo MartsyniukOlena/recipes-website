@@ -222,7 +222,7 @@ def recipe_edit(request, slug):
 
     if recipe.author != request.user:
         messages.error(request, 'Sorry, only the author can edit this recipe.')
-        return redirect(reverse('home'))
+        return redirect(reverse('recipe_detail', args=[slug]))
 
     if request.method == 'POST':
         form = RecipeForm(request.POST, request.FILES, instance=recipe)  # Include request.FILES for file uploads
@@ -238,7 +238,7 @@ def recipe_edit(request, slug):
         form = RecipeForm(instance=recipe)
         messages.info(request, f'You are editing {recipe.title}')
 
-    template = 'recipes/edit_recipe.html'
+    template = 'recipes/recipe_edit.html'
     context = {
         'form': form,
         'recipe': recipe,
@@ -259,20 +259,21 @@ def recipe_delete(request, slug):
     ``recipe``
         An instance of :model:`recipes.Recipe`.
     """
+
     recipe = get_object_or_404(Recipe, slug=slug)
 
     if recipe.author != request.user:
-        messages.error(request, 'You are not allowed to delete this recipe.')
-        return redirect(reverse('home'))
+        messages.error(request, 'Sorry, only the author can delete this recipe.')
+        return redirect(reverse('recipe_detail', args=[slug]))
 
     if request.method == 'POST':
         recipe.delete()
         messages.success(request, 'Recipe deleted!')
-        return HttpResponseRedirect(reverse('recipes_list'))
+        return redirect(reverse('recipes_list'))
     else:
-        messages.error(request, 'Invalid request method for deleting recipe.')
+        messages.error(request, 'Failed to delete recipe.')
 
-    return HttpResponseRedirect(reverse('recipes_list'))
+    return redirect(reverse('recipes_list'))
 
 
 @login_required
