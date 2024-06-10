@@ -13,9 +13,17 @@ class TestRecipeViews(TestCase):
             password="myPassword",
             email="test@test.com"
         )
-        self.recipe = Recipe(title="Recipe title", author=self.user, slug="recipe-title",
-        excerpt="Recipe excerpt", content="Recipe content", cooking_time=1, servings=2, status=1)
-        self.recipe.save()
+        self.recipe = Recipe.objects.create(
+            title="Recipe title",
+            author=self.user,
+            slug="recipe-title",
+            excerpt="Recipe excerpt",
+            content="Recipe content",
+            cooking_time=1,
+            servings=2,
+            status=1
+        )
+        self.client.login(username="myUsername", password="myPassword")
 
     def test_render_recipe_detail_page_with_comment_form(self):
         """Verifies a single recipe page containing a comment form is returned"""
@@ -54,18 +62,16 @@ class TestRecipeViews(TestCase):
 
     def test_add_to_favorites_view(self):
         """Test for adding recipes to Favorities"""
-        self.client.login(username="myUsername", password="myPassword")
-        response = self.client.post(reverse('add_to_favorites', kwargs={'slug': self.recipe.slug}))
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json()['message'], 'Recipe added to Favorites')
+        response = self.client.get(reverse('add_to_favorites', args=[self.recipe.slug]))
+        self.assertRedirects(response, reverse('recipe_detail', args=[self.recipe.slug]))
+        self.assertTrue(self.user.favorite.filter(slug=self.recipe.slug).exists())
 
     def test_remove_from_favorites_view(self):
         """Test for removing recipes from Favorities"""
-        self.client.login(username="myUsername", password="myPassword")
         self.user.favorite.add(self.recipe)
-        response = self.client.post(reverse('remove_from_favorites', kwargs={'slug': self.recipe.slug}))
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json()['message'], 'Recipe removed from Favorites')
+        response = self.client.get(reverse('remove_from_favorites', args=[self.recipe.slug]))
+        self.assertRedirects(response, reverse('recipe_detail', args=[self.recipe.slug]))
+        self.assertFalse(self.user.favorite.filter(slug=self.recipe.slug).exists())
 
 
 class MyRecipesPageTest(TestCase):
