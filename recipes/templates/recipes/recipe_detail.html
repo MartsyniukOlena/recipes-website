@@ -9,7 +9,7 @@
             <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                 <div class="col p-4 d-flex flex-column position-static">
                     <h1 class="recipe-title">{{ recipe.title }}</h1>
-                    <p class="recipe-excerpt">{{ recipe.excerpt | linebreaks }}</p>
+                    <div class="recipe-excerpt">{{ recipe.excerpt | linebreaks }}</div>
                     <p class="card-text"><i class="fa-regular fa-clock"></i>{{ recipe.cooking_time }} minutes</p>
                     <p><i class="fa-solid fa-users"></i>{{ recipe.servings }}</p>
                     <p class="recipe-subtitle">{{ recipe.author }} | {{ recipe.created_on }}</p>
@@ -36,14 +36,11 @@
             <div class="card-body">
                 <!-- The recipe content goes inside the card-text. -->
                 <!-- Use the | safe filter inside the template tags -->
-                <p class="card-text">
-                    {{ recipe.content | linebreaks | safe }}
-                </p>
+                <div class="card-text">{{ recipe.content | linebreaks | safe }}</div>
 
                 {% if user.is_authenticated and recipe.author == user %}
                 <a class="btn btn-edit" href="{% url 'recipe_edit' slug=recipe.slug %}">Edit Recipe</a>
-                <button class="btn btn-danger delete-recipe-btn" data-recipe-slug="{{ recipe.slug }}">Delete
-                    Recipe</button>
+                <button class="btn btn-danger delete-recipe-btn" data-recipe-slug="{{ recipe.slug }}">Delete Recipe</button>
                 {% endif %}
                 {% if request.user.is_authenticated and recipe.status != 0 %}
                     {% if is_favorite %}
