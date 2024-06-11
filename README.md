@@ -394,14 +394,27 @@ Recipe Detail Page
 ![Edit Recipe](readme-media/recipe-detail-testing.png)
 
 ## Deployment
-This project was deployed using Code Institute's mock terminal for Heroku.
 
 Steps for deployment:
-- Create a new Heroku app. --> Assign app name, choose region.
-- Go to settings. --> Create Config Vars, add DATABASE_URL, CLOUDINARY_URL, SECRET_KEY
-- Go to Deploy. --> Choose GitHub as deploying method 
-- Connect your repository
-- Deploy Branch 
+
+Create the Heroku App
+1. Navigate to your Heroku dashboard and create a new app with a unique name.
+2. Go to the Settings tab and reveal the config vars. Add a key of DISABLE_COLLECTSTATIC with a value of 1, then click Add. Add DATABASE_URL, CLOUDINARY_URL, SECRET_KEY
+
+Update Your Code for Deployment
+3. Install a production-ready webserver for Heroku - gunicorn
+4. Create a file named Procfile at the root directory of your project
+5. In the Procfile, declare this as a web process and specify the command to execute your Django project: web: gunicorn my_project.wsgi
+6. Open the my_project/settings.py file and set DEBUG=False.
+7. Append your Heroku hostname to the ALLOWED_HOSTS list in settings.py, along with the local host: ALLOWED_HOSTS = ['.herokuapp.com', 'localhost']
+8. Git add the files you have modified, git commit and push them to GitHub.
+
+Deploy on Heroku
+9. Return to the Heroku dashboard, and in your app, click on the Deploy tab.
+10. In the Deployment method section enable GitHub integration by clicking on Connect to GitHub. Authenticate with GitHub if required.
+11. Enter your project repository name in the search box and click Search. Select the repository you want to deploy.
+12. Scroll to the bottom of the page and click Deploy Branch to start a manual deployment of the main branch. You can view the build output in the application's Activity tab.
+13. Click on Open app to view your deployed project.
 
 ## Technologies
 
