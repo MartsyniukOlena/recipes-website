@@ -166,6 +166,11 @@ def comment_edit(request, slug, comment_id):
     ``comment_form``
         An instance of :form:`recipes.CommentForm`
     """
+
+    if not request.user.is_authenticated:
+        messages.error(request, 'Please, sign in to edit your comments.')
+        return redirect(reverse('account_login'))
+
     if request.method == "POST":
 
         queryset = Recipe.objects.filter(status=1)
@@ -197,6 +202,11 @@ def comment_delete(request, slug, comment_id):
     ``comment``
         A single comment related to the recipe.
     """
+
+    if not request.user.is_authenticated:
+        messages.error(request, 'Please, sign in to delete your comments.')
+        return redirect(reverse('account_login'))
+
     queryset = Recipe.objects.filter(status=1)
     recipe = get_object_or_404(queryset, slug=slug)
     comment = get_object_or_404(Comment, pk=comment_id)
@@ -211,7 +221,6 @@ def comment_delete(request, slug, comment_id):
     return HttpResponseRedirect(reverse('recipe_detail', args=[slug]))
 
 
-@login_required
 def recipe_edit(request, slug):
     """
     View function for editing an existing recipe.
@@ -223,6 +232,10 @@ def recipe_edit(request, slug):
     :template:`recipes/edit_recipe.html`
     """
     recipe = get_object_or_404(Recipe, slug=slug)
+
+    if not request.user.is_authenticated:
+        messages.error(request, 'Please, sign in to edit your recipes.')
+        return redirect(reverse('account_login'))
 
     if recipe.author != request.user:
         messages.error(request, 'Sorry, only the author can edit this recipe.')
@@ -264,6 +277,10 @@ def recipe_delete(request, slug):
         An instance of :model:`recipes.Recipe`.
     """
 
+    if not request.user.is_authenticated:
+        messages.error(request, 'Please, sign in to delete your recipes.')
+        return redirect(reverse('account_login'))
+
     recipe = get_object_or_404(Recipe, slug=slug)
 
     if recipe.author != request.user:
@@ -280,7 +297,6 @@ def recipe_delete(request, slug):
     return redirect(reverse('recipes_list'))
 
 
-@login_required
 def my_recipe_list(request):
     """
     View function for displaying a list of recipes authored by the current user.
@@ -299,6 +315,11 @@ def my_recipe_list(request):
 
     recipes/my_recipe_list.html
     """
+
+    if not request.user.is_authenticated:
+        messages.error(request, 'Sorry, only authenticated users can access the page.')
+        return redirect(reverse('account_login'))
+
     user = request.user
     published_recipes = Recipe.objects.filter(author=user, status=1)
     draft_recipes = Recipe.objects.filter(author=user, status=0)
@@ -338,7 +359,7 @@ def search_results(request):
     recipes = Recipe.objects.filter(Q(title__icontains=query) | Q(content__icontains=query))
     return render(request, 'recipes/search_results.html', {'recipes': recipes})
 
-@login_required
+
 def favorite_recipes(request):
     """
     View function for displaying a list of favorite recipes for the current user.
@@ -351,16 +372,25 @@ def favorite_recipes(request):
     **Template**
     recipes/favorite_recipes.html
     """
+    if not request.user.is_authenticated:
+        messages.error(request, 'Sorry, only authenticated users can access the page.')
+        return redirect(reverse('account_login'))
+
     favorite_recipes = request.user.favorite.all()
     return render(request, 'recipes/favorite_recipes.html', {'favorite_recipes': favorite_recipes})
 
-@login_required
+
 def add_to_favorites(request, slug):
     """
     View function for adding a recipe to the user's favorites.
     Adds the recipe to the favorites of the current user if it's not already there.
     """
     recipe = get_object_or_404(Recipe, slug=slug)
+
+    if not request.user.is_authenticated:
+        messages.error(request, 'Sorry, only authenticated users can add recipes to Favorities.')
+        return redirect(reverse('account_login'))
+
     if request.user.favorite.filter(slug=slug).exists():
         messages.info(request, "Recipe already in Favorites")
     else:
@@ -368,12 +398,17 @@ def add_to_favorites(request, slug):
         messages.success(request, "Recipe added to Favorites")
     return redirect(reverse('recipe_detail', args=[slug]))
 
-@login_required
+
 def remove_from_favorites(request, slug):
     """
     View function for removing a recipe from the user's favorites.
     """
     recipe = get_object_or_404(Recipe, slug=slug)
+
+    if not request.user.is_authenticated:
+        messages.error(request, 'Sorry, only authenticated users can remove recipes from Favorities.')
+        return redirect(reverse('account_login'))
+
     if request.user.favorite.filter(slug=slug).exists():
         request.user.favorite.remove(recipe)
         messages.success(request, "Recipe removed from Favorites")
