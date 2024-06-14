@@ -1,12 +1,13 @@
 document.addEventListener('DOMContentLoaded', function () {
-    let deleteButtons = document.querySelectorAll('.delete-recipe-btn');
-    let deleteForm = document.getElementById('delete-recipe-form');
-    let deleteModal = new bootstrap.Modal(document.getElementById('deleteRecipeModal'));
+    const deleteRecipeModal = new bootstrap.Modal(document.getElementById("deleteRecipeModal"));
+    const deleteRecipeButtons = document.getElementsByClassName("delete-recipe-btn");
+    const deleteRecipeForm = document.getElementById("delete-recipe-form");
 
-    for (let button of deleteButtons) {
+    for (let button of deleteRecipeButtons) {
         button.addEventListener("click", (e) => {
-            let recipeSlug = e.target.getAttribute("data-recipe-slug");
-            deleteForm.action = `/${recipeSlug}/delete_recipe/`;
+            let slug = e.target.getAttribute("data-recipe-slug");
+            deleteRecipeForm.action = `/${slug}/delete_recipe/`; 
+            deleteRecipeModal.show();
         });
     }
 });

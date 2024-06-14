@@ -242,7 +242,7 @@ def recipe_edit(request, slug):
         return redirect(reverse('recipe_detail', args=[slug]))
 
     if request.method == 'POST':
-        form = RecipeForm(request.POST, request.FILES, instance=recipe)  # Include request.FILES for file uploads
+        form = RecipeForm(request.POST, request.FILES, instance=recipe)
         if form.is_valid():
             updated_recipe = form.save(commit=False)
             updated_recipe.slug = slugify(updated_recipe.title)
@@ -292,9 +292,7 @@ def recipe_delete(request, slug):
         messages.success(request, 'Recipe deleted!')
         return redirect(reverse('recipes_list'))
     else:
-        messages.error(request, 'Failed to delete recipe.')
-
-    return redirect(reverse('recipes_list'))
+        return redirect(reverse('recipe_detail', args=[slug]))
 
 
 def my_recipe_list(request):
@@ -317,7 +315,7 @@ def my_recipe_list(request):
     """
 
     if not request.user.is_authenticated:
-        messages.error(request, 'Sorry, only authenticated users can access the page.')
+        messages.error(request, 'Sorry, only authenticated users can access My Recipes page.')
         return redirect(reverse('account_login'))
 
     user = request.user
@@ -373,7 +371,7 @@ def favorite_recipes(request):
     recipes/favorite_recipes.html
     """
     if not request.user.is_authenticated:
-        messages.error(request, 'Sorry, only authenticated users can access the page.')
+        messages.error(request, 'Sorry, only authenticated users can access Favorities page.')
         return redirect(reverse('account_login'))
 
     favorite_recipes = request.user.favorite.all()

@@ -75,23 +75,16 @@
                                 Actions
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item {% if request.path == my_recipe_list_url %}active"
-                                    aria-current="page{% endif %}" href="{% url 'my_recipe_list' %}">My Recipes</a></li>
-                                <li><a class="dropdown-item {% if request.path == favorite_recipes_url %}active"
-                                    aria-current="page{% endif %}" href="{% url 'favorite_recipes' %}"><i
-                                            class="fa-solid fa-heart"></i> Favorities</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item {% if request.path == add_recipe_url %}active"
-                                    aria-current="page{% endif %}" href="{% url 'add_recipe' %}">Add Recipe</a></li>
+                                <li><a class="dropdown-item {% if request.path == my_recipe_list_url %}active" aria-current="page{% endif %}" href="{% url 'my_recipe_list' %}">My Recipes</a></li>
+                                <li><a class="dropdown-item {% if request.path == favorite_recipes_url %}active" aria-current="page{% endif %}" href="{% url 'favorite_recipes' %}"><i class="fa-solid fa-heart"></i> Favorities</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item {% if request.path == add_recipe_url %}active" aria-current="page{% endif %}" href="{% url 'add_recipe' %}">Add Recipe</a></li>
                             </ul>
                         </li>
                         {% endif %}
                     </ul>
                     <form class="d-flex" role="search" method="GET" action="{% url 'search_results' %}">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
-                            name="q">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
                         <button class="btn btn-light search" type="submit">Search</button>
                     </form>
                     <div class="text-front">
@@ -129,8 +122,7 @@
             <div class="row">
                 <div class="col-md-8 offset-md-2">
                     {% for message in messages %}
-                    <div class="alert {{ message.tags }} alert-dismissible
-        fade show" id="msg" role="alert">
+                    <div class="alert {{ message.tags }} alert-dismissible fade show" id="msg" role="alert">
                         {{ message | safe }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
@@ -194,16 +186,10 @@
                 <div class="col-md-4 text-center text-md-end">
                     <p class="mb-0">
                         Follow us:
-                        <a href="https://www.facebook.com/" target="_blank" rel="noopener"
-                        aria-label="Visit our Facebook page (opens in a new tab)" class="social-link"><i
-                                class="fab fa-facebook-square ms-2"></i></a>
-                        <a href="https://www.instagram.com/" target="_blank" rel="noopener"
-                        aria-label="Visit our Instagram page (opens in a new tab)" class="social-link"><i
-                                class="fab fa-instagram-square ms-2"></i></a>
-                        <a href="https://www.youtube.com/" target="_blank" rel="noopener"
-                            aria-label="Visit our YouTobe page (opens in a new tab)" class="social-link"><i
-                                class="fab fa-youtube-square ms-2"></i></a>
-                        </p>
+                        <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Visit our Facebook page (opens in a new tab)" class="social-link"><i class="fab fa-facebook-square ms-2"></i></a>
+                        <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Visit our Instagram page (opens in a new tab)" class="social-link"><i class="fab fa-instagram-square ms-2"></i></a>
+                        <a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="Visit our YouTobe page (opens in a new tab)" class="social-link"><i class="fab fa-youtube-square ms-2"></i></a>
+                    </p>
                     <p class="mb-0">Email us: <i class="fa-solid fa-envelope ms-2"></i>info@gourmet.com</p>
                 </div>
             </div>
