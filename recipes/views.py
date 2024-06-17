@@ -171,14 +171,19 @@ def comment_edit(request, slug, comment_id):
         messages.error(request, 'Please, sign in to edit your comments.')
         return redirect(reverse('account_login'))
 
-    if request.method == "POST":
+    queryset = Recipe.objects.filter(status=1)
+    recipe = get_object_or_404(queryset, slug=slug)
+    comment = get_object_or_404(Comment, pk=comment_id)
+    comment_form = CommentForm(data=request.POST, instance=comment)
 
-        queryset = Recipe.objects.filter(status=1)
-        recipe = get_object_or_404(queryset, slug=slug)
-        comment = get_object_or_404(Comment, pk=comment_id)
+    if comment.author != request.user:
+        messages.add_message(request, messages.ERROR, 'You can only edit your own comments!')
+        return HttpResponseRedirect(reverse('recipe_detail', args=[slug]))
+
+    if request.method == "POST":
         comment_form = CommentForm(data=request.POST, instance=comment)
 
-        if comment_form.is_valid() and comment.author == request.user:
+        if comment_form.is_valid():
             comment = comment_form.save(commit=False)
             comment.recipe = recipe
             comment.approved = False
