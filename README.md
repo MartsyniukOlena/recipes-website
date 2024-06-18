@@ -1,9 +1,11 @@
 ___
 # Gourmet: Ultimate Culinary Destination
 
-Gourmet is a vibrant recipe-sharing platform and community hub for culinary enthusiasts worldwide. Users can discover a diverse array of recipes, share their culinary creations, and connect with fellow food lovers in the dynamic Gourmet Club.
+Gourmet is a vibrant recipe-sharing platform and community hub for users worldwide. Users can discover a diverse array of recipes, share their culinary creations, and connect with fellow food lovers in the dynamic Gourmet Club.
 
-Gourmet is targeted towards all culinary enthusiasts, from seasoned chefs to aspiring home cooks or those who are searching for inspiration to prepare tasty family food.
+It aims to inspire culinary creativity, offer a platform for sharing knowledge, and celebrate the art of cooking.
+
+Gourmet is targeted towards all culinary enthusiasts, from seasoned chefs to aspiring home cooks or those who are searching for inspiration to prepare tasty food.
 
 The live link can be found here - https://gourmet-website-52ef5f18a789.herokuapp.com/
 
@@ -162,12 +164,11 @@ If users already have an account, they are prompted to sign in instead.
 
 ![Sign Up](readme-media/sign-up.png)
 
+__404 Error:__
 
-__Delete Recipe and Comment Modal:__ provides a user-friendly way to confirm deletion actions, reducing the risk of accidental deletions and enhancing the user experience by prompting for confirmation before irreversible actions are taken.
+It is displayed when a user tries to access a URL that does not exist or is not available. It ensures the user understands why they are not seeing the page. It has the link to recipes listing for navigation.
 
-![Delete Recipe](readme-media/recipe-delete-modal.png)
-![Delete Comment](readme-media/coment-delete-modal.png)
-
+![404](readme-media/404.png)
 
 ## UX Design
 
@@ -211,6 +212,13 @@ __Club Page:__
 Club: Information about upcoming events, workshops, or cooking classes.
 Joining Options: Clear instructions and forms for users to join the club.
 
+__Delete Recipe and Comment Modal:__ 
+
+Provides a user-friendly way to confirm deletion actions, reducing the risk of accidental deletions and enhancing the user experience by prompting for confirmation before irreversible actions are taken.
+
+![Delete Recipe](readme-media/recipe-delete-modal.png)
+![Delete Comment](readme-media/coment-delete-modal.png)
+
 ### Messages:
 
 Messages are used to provide feedback to users after performing actions, such as signing in, signing out, loging in, adding, editing, or deleting a recipe or comment. These messages are displayed using Django's built-in message framework (django.contrib.messages), ensuring that users are informed about the outcome of their actions.
@@ -225,9 +233,23 @@ Messages enhance the user experience by providing immediate feedback, helping us
 ![Recipe Edited](readme-media/recipe-edited.png)
 ![Recipe Published](readme-media/recipe-published.png)
 ![Sign in](readme-media/sccessfully-signed-in.png)
-![](readme-media/recipe-removed-favorities.png)
-![](readme-media/recipe-added-to-favorities.png)
-
+![Sign Out](readme-media/sign-out-message.png)
+![Added to Favorities](readme-media/added-to-fav.png)
+![Removed from Favorities](readme-media/removed-from-fav.png)
+![Same title Error](readme-media/same-title-error.png)
+![Recipe in Favorities](readme-media/recipe-in-fav-info.png)
+![Recipe not in Favorities](readme-media/recipe-not-in-fav-info.png)
+![Fail to delete recipe](readme-media/failed-to-delete-recipe.png)
+![Only Authors can delete recipe](readme-media/delete-recipe-error.png)
+![Only Authors can edit recipe](readme-media/edit-recipe-error.png)
+![Sign in to add recipe error](readme-media/add-recipe-auth-message.png)
+![Sign in to delete comment](readme-media/delete-own-comment-error-message.png)
+![Sign in to edit comments](readme-media/edit-own-comment-error.png)
+![Sign in to access Favorities](readme-media/error-access-fav-message.png)
+![Sign in to save recipes](readme-media/error-to-save-recipe-message.png)
+![Sign in to remove recipes from Favoritie](readme-media/removed-from-fav-error-message.png)
+![Sign in to delete comments](readme-media/sign-in-to-delete-comments-error-message.png)
+![Sign in to Edit comments](readme-media/sign-in-to-editcomments-error-message.png)
 
 ### Modal Dialogs:
 
@@ -291,8 +313,8 @@ The resuts are the following:
 ### Compatibility Testing:
 
 The website was tested in different browsers - Chrome, Firefox, Edge
-The website was tested in Windows and Android.
 
+The website was tested in Windows and Android.
 
 ### Bugs resoled and unresolved:
 
@@ -300,7 +322,7 @@ Resolved bugs:
     Add Itegrity Error to the add_recipe view to inform a user that the recipe with the same title exists so the user chooses the different title.
 
 Unresolved bugs:
-    Add Cancel button for editing and adding recipes.
+    Add Cancel button for editing and adding recipes forms.
 
 
 ### Performance Testing:
@@ -313,7 +335,6 @@ Home Page
 ![Home Page](readme-media/home-desktop.png)
 Recipes Page
 ![Recipes Page](readme-media/recipes-desktop.png)
-
 Gourmet Club Page
 ![Gourmet Club](readme-media/club-desctop.png)
 My Recipes Page
@@ -366,8 +387,11 @@ Recipe Detail Page
 ### Code Validation
 
 HTML: No errors were found when passing through the [W3C Validator](https://validator.w3.org/)
+
 CSS: No errors were found when passing through the [Jigsaw validator](https://jigsaw.w3.org/css-validator/validator)
-Python: No errors were found when passing through the [pep8ci](https://pep8ci.herokuapp.com/) 
+
+Python: No errors were found when passing through the [pep8ci](https://pep8ci.herokuapp.com/)
+
 JS Hint: No errors were found when passing through the [Jshint](https://jshint.com/)
 
 ### Features and User Stories Testing
@@ -402,6 +426,7 @@ Create the Heroku App
 2. Go to the Settings tab and reveal the config vars. Add a key of DISABLE_COLLECTSTATIC with a value of 1, then click Add. Add DATABASE_URL, CLOUDINARY_URL, SECRET_KEY
 
 Update Your Code for Deployment
+
 3. Install a production-ready webserver for Heroku - gunicorn
 4. Create a file named Procfile at the root directory of your project
 5. In the Procfile, declare this as a web process and specify the command to execute your Django project: web: gunicorn my_project.wsgi
@@ -410,6 +435,7 @@ Update Your Code for Deployment
 8. Git add the files you have modified, git commit and push them to GitHub.
 
 Deploy on Heroku
+
 9. Return to the Heroku dashboard, and in your app, click on the Deploy tab.
 10. In the Deployment method section enable GitHub integration by clicking on Connect to GitHub. Authenticate with GitHub if required.
 11. Enter your project repository name in the search box and click Search. Select the repository you want to deploy.
@@ -451,4 +477,3 @@ Deploy on Heroku
 - [Pexels](https://www.pexels.com/) - all images were downloaded from Pexel.
 - [Pinterest](https://www.pinterest.com/pin/272327108710190873/) - logo was downloaded from Pinterest.
 - [flyUX-pp4](https://github.com/CarlMurray/flyUX-pp4), [Meal Planner](https://github.com/AliOKeeffe/PP4_My_Meal_Planner) - reference for testing
-

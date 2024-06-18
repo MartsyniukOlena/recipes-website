@@ -6,30 +6,30 @@
 <div class="container px-4 py-5 features" id="featured-3">
   <h1 class="pb-2 border-bottom">Explore Gourmet</h1>
   <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-    <div class="feature col">
+    <div class="feature col d-flex flex-column">
       <h2>Ultimate Culinary Destination</h2>
-      <p>Indulge your passion for cooking and join the vibrant community at Gourmet.<br>
+      <p class="flex-grow-1">Indulge your passion for cooking and join the vibrant community at Gourmet.<br>
         Our platform welcomes you to showcase your culinary
         creativity and discover a world of flavors.<br><br></p>
-        <div class="text-center heading-featured col">
+      <div class="heading-featured">
         <a class="btn btn-outline-dark nav-link {% if request.path == signup_url %}active"
         aria-current="page{% endif %}" href="{% url 'account_signup' %}">Sign Up</a>
       </div>
     </div>
-    <div class="feature col">
+    <div class="feature col d-flex flex-column">
       <h2>Let Your Taste Buds Dance</h2>
-      <p>With a diverse range of recipes spanning cuisines from around the globe, Gourmet is your passport to culinary
+      <p class="flex-grow-1">With a diverse range of recipes spanning cuisines from around the globe, Gourmet is your passport to culinary
         exploration.<br><br><br></p>
-        <div class="text-center heading-featured col">
+      <div class="heading-featured">
         <a class="btn btn-outline-dark nav-link {% if request.path == recipes_url %}active"
         aria-current="page{% endif %}" href="{% url 'recipes_list' %}">Browse Recipes</a>
       </div>
     </div>
-    <div class="feature col">
+    <div class="feature col d-flex flex-column">
       <h2>Endless Inspiration</h2>
-      <p><br>Our club offers a vibrant community where members can come together to share knowledge, explore new flavors, and
+      <p class="flex-grow-1"><br>Our club offers a vibrant community where members can come together to share knowledge, explore new flavors, and
         celebrate the art of cooking.<br><br></p>
-        <div class="text-center heading-featured col">
+      <div class="heading-featured">
         <a class="btn btn-outline-dark nav-link {% if request.path == club_url %}active" aria-current="page{% endif %}"
         href="{% url 'club' %}">Learn More</a>
       </div>
