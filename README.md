@@ -108,21 +108,20 @@ The page allows the user to easily access and review their recipes in one place,
 
 ![My recipes](readme-media/my-recipes.png)
 
-
 __Favorite Recipes:__
 
 It gathers and presenting all recipes that the user likes for later access. It enhances user experience by providing an organized and visually appealing way to browse through favorite recipes.
 
 ![Favorite Recipes](readme-media/my-recipes.png)
 
-
-__Adding Recipes__
+__Adding Recipes & Editing Recipes__
 
 The form provides a structured interface for users to input details about their recipe.
 It standardizes the submission process, ensuring that all necessary information is collected in a systematic manner. This helps maintain data consistency and makes it easier for users to share their recipes.
 
-![Add Recipe](readme-media/add-recipe.png)
+Editing Recipes provides an easy way for users to modify existing recipes details.
 
+![Add Recipe](readme-media/add-recipe.png)
 
 __Recipe Detail Page__
 
@@ -201,7 +200,7 @@ Interaction: Ability for users to favorite recipes, leave comments.
 
 __Activity Feed:__ Overview of user's recent activity, such as recipes posted and drafted or recipes favorited.
 
-__Add Recipe Page:__
+__Add Recipe Page and Edit Recipe Page:__
 
 Form Design: Intuitive form for users to input recipe details, including title, excerpt, ingredients, instructions, images, servings, cooking time, status.
 Validation: Validation checks to ensure all required fields are filled out correctly.
@@ -212,7 +211,7 @@ __Club Page:__
 Club: Information about upcoming events, workshops, or cooking classes.
 Joining Options: Clear instructions and forms for users to join the club.
 
-__Delete Recipe and Comment Modal:__ 
+### Delete Recipe and Comment Modal:
 
 Provides a user-friendly way to confirm deletion actions, reducing the risk of accidental deletions and enhancing the user experience by prompting for confirmation before irreversible actions are taken.
 
@@ -222,7 +221,7 @@ Provides a user-friendly way to confirm deletion actions, reducing the risk of a
 ### Messages:
 
 Messages are used to provide feedback to users after performing actions, such as signing in, signing out, loging in, adding, editing, or deleting a recipe or comment. These messages are displayed using Django's built-in message framework (django.contrib.messages), ensuring that users are informed about the outcome of their actions.
-Different message levels (e.g., messages.SUCCESS, messages.ERROR) are used to convey the nature of the message, whether it's a success message or an error message.
+Different message levels (e.g., messages.SUCCESS, messages.ERROR, messages.INFO) are used to convey the nature of the message, whether it's a success message or an error message.
 Messages enhance the user experience by providing immediate feedback, helping users understand the result of their interactions with the platform.
 
 ![Comment Deleted](readme-media/comment-deleted.png)
@@ -236,9 +235,10 @@ Messages enhance the user experience by providing immediate feedback, helping us
 ![Sign Out](readme-media/sign-out-message.png)
 ![Added to Favorities](readme-media/added-to-fav.png)
 ![Removed from Favorities](readme-media/removed-from-fav.png)
-![Same title Error](readme-media/same-title-error.png)
+![You are editing a recipe](readme-media/recipe-editing-info.png)
 ![Recipe in Favorities](readme-media/recipe-in-fav-info.png)
 ![Recipe not in Favorities](readme-media/recipe-not-in-fav-info.png)
+![Same title Error](readme-media/same-title-error.png)
 ![Fail to delete recipe](readme-media/failed-to-delete-recipe.png)
 ![Only Authors can delete recipe](readme-media/delete-recipe-error.png)
 ![Only Authors can edit recipe](readme-media/edit-recipe-error.png)
@@ -281,7 +281,7 @@ __Colors:__
 
 __Images__
 
-Several static image are used on the website(three images depicting food and spices for carousel, a default image for recipes if the user doesn't upload their, placeholder for Club page, logo and favicon). Users can add images for thier recipes.
+Several static image are used on the website(three images depicting food and spices for carousel, a default image for recipes if the user doesn't upload their, placeholder for Club page, logo and favicon). Users can add images for their recipes.
 
 __Fonts__
 
@@ -379,16 +379,26 @@ Search Reslts
 ![Search Reslts](readme-media/search-mobile.png)
 Edit Recipe
 ![Edit Recipe](readme-media/edit-recipe-mobile.png)
-
 Recipe Detail Page
-
 ![Recipe Detail Page](readme-media/recipe-detail-mobile.png)
 
 ### Code Validation
 
 HTML: No errors were found when passing through the [W3C Validator](https://validator.w3.org/)
 
-CSS: No errors were found when passing through the [Jigsaw validator](https://jigsaw.w3.org/css-validator/validator)
+- https://validator.w3.org/nu/?doc=https%3A%2F%2Fgourmet-website-52ef5f18a789.herokuapp.com%2F
+- https://validator.w3.org/nu/?doc=https%3A%2F%2Fgourmet-website-52ef5f18a789.herokuapp.com%2Frecipes%2F
+- https://validator.w3.org/nu/?doc=https%3A%2F%2Fgourmet-website-52ef5f18a789.herokuapp.com%2Fclub%2F
+- https://validator.w3.org/nu/?doc=https%3A%2F%2Fgourmet-website-52ef5f18a789.herokuapp.com%2Faccounts%2Fsignup%2F
+- https://validator.w3.org/nu/?doc=https%3A%2F%2Fgourmet-website-52ef5f18a789.herokuapp.com%2Faccounts%2Flogin%2F
+- https://validator.w3.org/nu/?doc=https%3A%2F%2Fgourmet-website-52ef5f18a789.herokuapp.com%2Fraspberry-and-chocolate-tart%2F
+- https://validator.w3.org/nu/?doc=https%3A%2F%2Fgourmet-website-52ef5f18a789.herokuapp.com%2Faccounts%2Flogout%2F
+- https://validator.w3.org/nu/?doc=https%3A%2F%2Fgourmet-website-52ef5f18a789.herokuapp.com%2Fmy_recipes%2F
+- https://validator.w3.org/nu/?doc=https%3A%2F%2Fgourmet-website-52ef5f18a789.herokuapp.com%2Ffavorite-recipes%2F
+- https://validator.w3.org/nu/?doc=https%3A%2F%2Fgourmet-website-52ef5f18a789.herokuapp.com%2Fadd_recipe%2F
+- https://validator.w3.org/nu/?doc=https%3A%2F%2Fgourmet-website-52ef5f18a789.herokuapp.com%2Fraspberry-and-chocolate-tart%2Fedit_recipe%2F
+
+CSS: No errors were found when passing through the [Jigsaw validator](https://jigsaw.w3.org/css-validator/)
 
 Python: No errors were found when passing through the [pep8ci](https://pep8ci.herokuapp.com/)
 
